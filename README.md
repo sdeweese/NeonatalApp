@@ -7,7 +7,7 @@ This application will have three main components:
 
 Initial Setup
 ---------
-1. Install node.js: `brew search node`
+1. Install node.js: `brew search node` Note, if you do not have homebrew installed, install it using this link: http://osxdaily.com/2018/03/07/how-install-homebrew-mac-os/
 1. Install expo-cli: `npm install -g expo-cli`
 1. Clone repo into a folder on your device by using git clone <this_repository_ssh_or_https_key>
 1. Go to a command line prompt and navigate to the folder.
