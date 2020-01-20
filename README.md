@@ -17,3 +17,7 @@ Initial Setup
 Download the Expo Cli app on the phone.
 1. Install android-studio `brew cask install android-studio`
 1. If you are using iOS, use the built-in camera app on the phone to scan the QR code. A link will come up asking to open the Expo Cli app. However, for Android devices, the QR code can be scanned from within the Expo Cli app itself. (Note: XCODE's iOS simulator is another option for testing the app. Android simulators are also available.)
+
+App-Specific downloads
+---------
+1. To be able to naviage between screens, install React Navigation `npm install --save react-navigation` https://facebook.github.io/react-native/docs/navigation
