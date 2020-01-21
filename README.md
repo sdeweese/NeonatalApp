@@ -21,3 +21,5 @@ Download the Expo Cli app on the phone.
 App-Specific downloads
 ---------
 1. To be able to naviage between screens, install React Navigation `npm install --save react-navigation` https://facebook.github.io/react-native/docs/navigation
+1. `npm install --save react-native-gesture-handler`
+1. `npm install --save react-navigation-stack`
