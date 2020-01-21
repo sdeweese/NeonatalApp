@@ -23,3 +23,7 @@ App-Specific downloads
 1. To be able to naviage between screens, install React Navigation `npm install --save react-navigation` https://facebook.github.io/react-native/docs/navigation
 1. `npm install --save react-native-gesture-handler`
 1. `npm install --save react-navigation-stack`
+
+If there are any peer dependencies that need to be installed, install them as your command line prompts you to. For our project we installed these peer dependencies:
+* npm install --save @react-native-community/masked-view
+* npm install --save react-native-safe-area-context
