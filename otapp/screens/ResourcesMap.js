@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
 import ResourceItem from "./components/ResourceItem";
 
 class ResourcesMap extends React.Component {
+  
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text>ResourcesMap</Text>
+        <Text style={styles.title}>Resources</Text>
         <ResourceItem resource="BUBIRO HEALTH CENTRE 2" />
         <ResourceItem resource="BUGUNGU HEALTH CENTRE 2" />
         <ResourceItem resource="BUSABAGA HEALTH CENTRE 3" />
@@ -39,6 +40,15 @@ export default ResourcesMap;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da'
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 32,
+    paddingTop: 15,
+    paddingBottom: 10
   }
 });
