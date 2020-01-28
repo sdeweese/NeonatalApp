@@ -7,7 +7,7 @@ class ModulesPage extends React.Component{
             <View style={styles.container}>
                 <Button
                     title="First Module"
-                    onPress={() => this.props.navigation.navigate("Module1")}
+                    onPress={() => this.props.navigation.navigate("Module1a")}
                 />
                 <Text>Second Module</Text>
                 <Text>Third Module</Text>
