@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 class ModulesPage extends React.Component{
     render(){
         return (
             <View style={styles.container}>
-                <Text>ModulesPage</Text>
+                <Button
+                    title="First Module"
+                    onPress={() => this.props.navigation.navigate("Module1")}
+                />
+                <Text>Second Module</Text>
+                <Text>Third Module</Text>
             </View>
         );
     }
