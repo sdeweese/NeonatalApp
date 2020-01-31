@@ -1,26 +1,66 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Alert,
+  TouchableHighlight,
+  Modal
+} from "react-native";
 
-const ResourceItem = props => {
-  return (
-    <View style={styles.listItem}>
-      <Text style={styles.text}>{props.resource}</Text>
-    </View>
-  );
-};
+class ResourceItem extends React.Component {
+  state = { modalVisible: false };
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  render() {
+    return (
+      <View style={styles.listItem}>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            this.setModalVisible(!this.state.modalVisible);
+          }}
+        >
+          <Text style={styles.text}>{this.props.resource}</Text>
+          <TouchableHighlight
+            style={styles.touch}
+            onPress={() => {
+              this.setModalVisible(!this.state.modalVisible);
+            }}
+          >
+            <Text style={styles.text}>Close Window</Text>
+          </TouchableHighlight>
+        </Modal>
+
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(true);
+          }}
+        >
+          <Text style={styles.text}>{this.props.resource}</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
 
 export default ResourceItem;
 
 const styles = StyleSheet.create({
   listItem: {
-    paddingLeft: 12,
     marginVertical: 14,
-    borderRadius: 4,
-    borderStyle: "dotted",
-    borderWidth: 2.5,
-    borderColor: 'green'
+    borderWidth: 1,
+    borderColor: "lightgray"
   },
   text: {
     fontSize: 20
+  },
+  touch: {
+    padding: 12
   }
 });
