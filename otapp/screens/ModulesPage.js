@@ -6,15 +6,16 @@ class ModulesPage extends React.Component{
         return (
             <View style={styles.container}>
                 <Button
-                    title="First Module"
-                    onPress={() => this.props.navigation.navigate("Module1")}
+                    title="Lactation"
+                    onPress={() => this.props.navigation.navigate("Lactation")}
                 />
+                <Text>Common Sicknesses</Text>
+                <Text>Hygiene</Text>
+                <Text>Postpartum Expectations</Text>
                 <Button
-                    title="Test Module1b"
+                    title="Test Module"
                     onPress={() => this.props.navigation.navigate("Module1b")}
                 />
-                <Text>Second Module</Text>
-                <Text>Third Module</Text>
             </View>
         );
     }
