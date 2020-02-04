@@ -28,7 +28,6 @@ To be able to naviage between screens, install the following: https://facebook.g
 If there are any peer dependencies that need to be installed, install them as your command line prompts you to. For our project we installed these peer dependencies:
 * `npm install --save @react-native-community/masked-view`
 * `npm install --save react-native-safe-area-context`
-* `npm install react-native-swipe-image` (recommended by https://reactnativeexample.com/react-native-swipe-image/)
 
 React Bootstrap:
 * `npm i react-bootstrap bootstrap`
