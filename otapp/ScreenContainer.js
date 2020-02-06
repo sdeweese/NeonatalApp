@@ -4,15 +4,15 @@ import { createAppContainer } from "react-navigation";
 
 import HomeScreen from "./screens/HomeScreen";
 import ModulesPage from "./screens/ModulesPage";
-import Module1 from "./screens/Module1";
-import Module1a from "./screens/Module1a";
+import Lactation from "./screens/Lactation";
+import Module1b from "./screens/Module1b";
 import ResourcesMap from "./screens/ResourcesMap";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Modules: { screen: ModulesPage },
-  Module1: { screen: Module1 },
-  Module1a: { screen: Module1a },
+  Lactation: { screen: Lactation },
+  Module1b: { screen: Module1b },
   Resources: { screen: ResourcesMap }
 });
 
