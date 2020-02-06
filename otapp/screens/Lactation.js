@@ -22,6 +22,27 @@ class Lactation extends React.Component{
                         source={require('../assets/slide2.png')} />
                 </View>
 
+                <View style={styles.container}>
+                    <Image 
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        resizeMode="contain"
+                        source={require('../assets/color1.png')} />
+                </View>
+
+                <View style={styles.container}>
+                    <Image 
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        resizeMode="contain"
+                        source={require('../assets/color2.png')} />
+                </View>
+
+                <View style={styles.container}>
+                    <Image 
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        resizeMode="contain"
+                        source={require('../assets/color3.png')} />
+                </View>
+
             </ScrollView>
         );
     }
