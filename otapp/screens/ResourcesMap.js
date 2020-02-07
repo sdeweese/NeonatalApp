@@ -1,13 +1,28 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ScrollView,
+  Image,
+  Dimensions
+} from "react-native";
 import ResourceItem from "./components/ResourceItem";
 
 class ResourcesMap extends React.Component {
-  
   render() {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Resources</Text>
+        <Image
+          style={{
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height
+          }}
+          resizeMode="contain"
+          source={require("../assets/BUBIRO-HEALTH-CENTRE-2.png")}
+        />
         <ResourceItem resource="BUBIRO HEALTH CENTRE 2" />
         <ResourceItem resource="BUGUNGU HEALTH CENTRE 2" />
         <ResourceItem resource="BUSABAGA HEALTH CENTRE 3" />
@@ -43,10 +58,10 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: '#d6d7da'
+    borderColor: "#d6d7da"
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 32,
     paddingTop: 15,
     paddingBottom: 10
