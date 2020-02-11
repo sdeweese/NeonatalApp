@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
 
-class Lactation extends React.Component{
+class FeedingYourBaby extends React.Component{
     render(){
         return (
             <ScrollView
@@ -43,11 +43,18 @@ class Lactation extends React.Component{
                         source={require('../assets/color3.png')} />
                 </View>
 
+                <View style={styles.container}>
+                    <Image 
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        resizeMode="contain"
+                        source={require('../assets/trial.png')} />
+                </View>
+
             </ScrollView>
         );
     }
 }
-export default Lactation;
+export default FeedingYourBaby;
 
 const styles = StyleSheet.create({
     container:{
