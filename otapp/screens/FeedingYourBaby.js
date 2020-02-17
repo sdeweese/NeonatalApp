@@ -17,37 +17,37 @@ class FeedingYourBaby extends React.Component{
 
                 <View style={styles.container}>
                     <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        style={{  width: Dimensions.get('window').width, height: Dimensions.get('window').height-10  }}
                         resizeMode="contain"
-                        source={require('../assets/slide2.png')} />
+                        source={require('../assets/Slide2.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
                         resizeMode="contain"
-                        source={require('../assets/color1.png')} />
+                        source={require('../assets/Slide3.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
                         resizeMode="contain"
-                        source={require('../assets/color2.png')} />
+                        source={require('../assets/Slide4.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
                         resizeMode="contain"
-                        source={require('../assets/color3.png')} />
+                        source={require('../assets/Slide5.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
                         resizeMode="contain"
-                        source={require('../assets/trial.png')} />
+                        source={require('../assets/Slide6.png')} />
                 </View>
 
             </ScrollView>
