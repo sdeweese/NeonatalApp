@@ -10,42 +10,42 @@ class FeedingYourBaby extends React.Component{
             >
                 <View style={styles.container}>
                     <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
                         source={require('../assets/Slide1.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
-                        style={{  width: Dimensions.get('window').width, height: Dimensions.get('window').height-10  }}
+                        style={{  width: Dimensions.get('window').width, height: Dimensions.get('window').height-75  }}
                         resizeMode="contain"
                         source={require('../assets/Slide2.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
                         source={require('../assets/Slide3.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
                         source={require('../assets/Slide4.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
                         source={require('../assets/Slide5.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
                         source={require('../assets/Slide6.png')} />
                 </View>
