@@ -7,13 +7,15 @@ import ModulesPage from "./screens/ModulesPage";
 import FeedingYourBaby from "./screens/FeedingYourBaby";
 import Module1b from "./screens/Module1b";
 import ResourcesMap from "./screens/ResourcesMap";
+import Admin from "./screens/Admin";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Modules: { screen: ModulesPage },
-  FeedingYourBaby: { screen: FeedingYourBaby },
+  FeedingYourBaby: { screen: FeedingYourBaby, navigationOptions: { headerTitle: "Feeding Your Baby" } },
   Module1b: { screen: Module1b },
-  Resources: { screen: ResourcesMap }
+  Resources: { screen: ResourcesMap },
+  Admin: { screen: Admin }
 });
 
 const Container = createAppContainer(NavigationStack);
