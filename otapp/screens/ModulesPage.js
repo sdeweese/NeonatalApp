@@ -9,12 +9,17 @@ class ModulesPage extends React.Component{
                     title="Feeding Your Baby"
                     onPress={() => this.props.navigation.navigate("FeedingYourBaby")}
                 />
-                <Text>Keeping Baby Clean and Healthy</Text>
-                <Text>When Baby Gets Sick</Text>
+                             
                 <Button
-                    title="Test Module"
-                    onPress={() => this.props.navigation.navigate("Module1b")}
+                    title="Keeping Baby Clean and Healthy"
+                    onPress={() => this.props.navigation.navigate("Home")}
                 />
+
+                <Button
+                    title="When Baby Gets Sick"
+                    onPress={() => this.props.navigation.navigate("Home")}
+                />
+                
             </View>
         );
     }
@@ -25,6 +30,6 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'space-evenly'
     }
 });
