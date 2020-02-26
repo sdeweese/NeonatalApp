@@ -28,8 +28,10 @@ class ResourceItem extends React.Component {
         >
           <View style={styles.listItem}>
             <Text style={styles.text}>{this.props.resource}</Text>
-            <Text style={styles.text}>Address: </Text>
-            <Text style={styles.text}>Telephone Number:</Text>
+            <Text style={styles.text}>Address: {this.props.address}</Text>
+            <Text style={styles.text}>
+              Telephone Number: {this.props.phone}
+            </Text>
             <TouchableHighlight
               style={styles.touch}
               onPress={() => {
