@@ -13,6 +13,10 @@ class HomeScreen extends React.Component {
           title="Resources Map"
           onPress={() => this.props.navigation.navigate("Resources")}
         />
+        <Button
+          title="Admin"
+          onPress={() => this.props.navigation.navigate("Admin")}
+        />
       </View>
     );
   }

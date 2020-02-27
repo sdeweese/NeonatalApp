@@ -6,16 +6,20 @@ class ModulesPage extends React.Component{
         return (
             <View style={styles.container}>
                 <Button
-                    title="Lactation"
-                    onPress={() => this.props.navigation.navigate("Lactation")}
+                    title="Feeding Your Baby"
+                    onPress={() => this.props.navigation.navigate("FeedingYourBaby")}
                 />
-                <Text>Common Sicknesses</Text>
-                <Text>Hygiene</Text>
-                <Text>Postpartum Expectations</Text>
+                             
                 <Button
-                    title="Test Module"
-                    onPress={() => this.props.navigation.navigate("Module1b")}
+                    title="Keeping Baby Clean and Healthy"
+                    onPress={() => this.props.navigation.navigate("Home")}
                 />
+
+                <Button
+                    title="When Baby Gets Sick"
+                    onPress={() => this.props.navigation.navigate("Home")}
+                />
+                
             </View>
         );
     }
@@ -26,6 +30,6 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'space-evenly'
     }
 });
