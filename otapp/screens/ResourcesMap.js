@@ -6,7 +6,8 @@ import {
   FlatList,
   ScrollView,
   Image,
-  Dimensions
+  Dimensions,
+  Linking
 } from "react-native";
 import ResourceItem from "./components/ResourceItem";
 
@@ -55,6 +56,21 @@ class ResourcesMap extends React.Component {
             34 Luwero Uganda
           </Text>
           <Text>Phone Number: +256 39 2001043</Text>
+          <Text
+            style={{
+              color: "blue",
+              backgroundColor: "#e6e6e6",
+              padding: 5,
+              margin: 5
+            }}
+            onPress={() =>
+              Linking.openURL(
+                "https://www.facebook.com/KalagalaHealthCentreIv/"
+              )
+            }
+          >
+            Book an Appointment
+          </Text>
           <Image
             style={styles.image}
             resizeMode="contain"
