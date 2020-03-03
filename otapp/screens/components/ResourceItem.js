@@ -103,6 +103,7 @@ class ResourceItem extends React.Component {
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
+          supportedOrientations={['landscape']}
           onRequestClose={() => {
             this.setModalVisible(!this.state.modalVisible);
           }}
@@ -125,6 +126,7 @@ class ResourceItem extends React.Component {
         </Modal>
 
         <TouchableHighlight
+          supportedOrientations={['landscape']}
           onPress={() => {
             this.setModalVisible(true);
           }}

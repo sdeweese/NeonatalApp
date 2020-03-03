@@ -12,12 +12,12 @@ class ModulesPage extends React.Component{
                              
                 <Button
                     title="Keeping Baby Clean and Healthy"
-                    onPress={() => this.props.navigation.navigate("Home")}
+                    onPress={() => this.props.navigation.navigate("KeepingBabyClean")}
                 />
 
                 <Button
                     title="When Baby Gets Sick"
-                    onPress={() => this.props.navigation.navigate("Home")}
+                    onPress={() => this.props.navigation.navigate("WhenBabyGetsSick")}
                 />
                 
             </View>
