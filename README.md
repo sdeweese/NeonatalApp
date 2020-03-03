@@ -31,3 +31,13 @@ If there are any peer dependencies that need to be installed, install them as yo
 
 React Bootstrap:
 * `npm i react-bootstrap bootstrap`
+
+Creating an APK File
+---------
+* Helpful link in creating APK file: https://docs.expo.io/versions/latest/distribution/building-standalone-apps/#2-configure-appjson
+* Create an account
+* Make sure there is an “android” section in `app.json`
+* Run this command `expo build:android` Note: this will take a while
+* Download the APK file
+* Upload it to a Google Drive or send it via email to be downloaded on the tablet itself
+
