@@ -36,7 +36,7 @@ class ResourceItem extends React.Component {
       ? this.state.minHeight
       : this.state.maxHeight + this.state.minHeight;
 
-    console.log(this.state.minHeight);
+    //console.log(this.state.minHeight);
     this.setState({
       expanded: !this.state.expanded
     });
