@@ -10,16 +10,27 @@ import WhenBabyGetsSick from "./screens/WhenBabyGetsSick";
 import Module1b from "./screens/Module1b";
 import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
+import Messages from "./screens/Messages";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Modules: { screen: ModulesPage },
-  FeedingYourBaby: { screen: FeedingYourBaby, navigationOptions: { headerTitle: "Feeding Your Baby" } },
-  KeepingBabyClean: { screen: KeepingBabyClean, navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" } },
-  WhenBabyGetsSick: { screen: WhenBabyGetsSick, navigationOptions: { headerTitle: "When Baby Gets Sick" } },
+  FeedingYourBaby: {
+    screen: FeedingYourBaby,
+    navigationOptions: { headerTitle: "Feeding Your Baby" }
+  },
+  KeepingBabyClean: {
+    screen: KeepingBabyClean,
+    navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" }
+  },
+  WhenBabyGetsSick: {
+    screen: WhenBabyGetsSick,
+    navigationOptions: { headerTitle: "When Baby Gets Sick" }
+  },
   Module1b: { screen: Module1b },
   Resources: { screen: ResourcesMap },
-  Admin: { screen: Admin }
+  Admin: { screen: Admin },
+  Messages: { screen: Messages }
 });
 
 const Container = createAppContainer(NavigationStack);
