@@ -7,7 +7,7 @@ class Admin extends React.Component {
       <View style={styles.container}>
         <Button
           title="Database"
-          onPress={() => this.props.navigation.navigate("Home")}
+          onPress={() => this.props.navigation.navigate("Database")}
         />
         <Button
           title="Messages"
