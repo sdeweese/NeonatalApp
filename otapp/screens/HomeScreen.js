@@ -6,7 +6,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Button
-          title="Go To Modules"
+          title="Educational Modules"
           onPress={() => this.props.navigation.navigate("Modules")}
         />
         <Button
@@ -14,7 +14,7 @@ class HomeScreen extends React.Component {
           onPress={() => this.props.navigation.navigate("Resources")}
         />
         <Button
-          title="Admin"
+          title="Administrator"
           onPress={() => this.props.navigation.navigate("Admin")}
         />
       </View>
