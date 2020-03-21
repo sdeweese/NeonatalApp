@@ -19,7 +19,7 @@ class Database extends React.Component {
           <Text style={styles.title}>Mother Information</Text>
           <Button
             title="+"
-            onPress={() => this.props.navigation.navigate("Mother Information")}
+            onPress={() => this.props.navigation.navigate("AddMother")}
           ></Button>
         </View>
         <ExpandableItem title="Natukunda">  
