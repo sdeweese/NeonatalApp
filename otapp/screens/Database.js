@@ -12,11 +12,12 @@ import {
 import ExpandableItem from "./components/ExpandableItem";
 
 class Database extends React.Component {
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.top}>
-          <Text style={styles.title}>Mother Information</Text>
+          <Text style={styles.title}>Mothers</Text>
           <Button
             title="+"
             onPress={() => this.props.navigation.navigate("AddMother")}
@@ -36,6 +37,11 @@ class Database extends React.Component {
             Date of Birth: February 29th, 2020 {'\n'}
             Phone Number: 41 902 2938 {'\n'}
             Notes: Tukesiga is planning to come back on March 20th
+          </Text>
+        </ExpandableItem>
+        <ExpandableItem title="New Mother">
+          <Text style={styles.expand}>
+           
           </Text>
         </ExpandableItem>
       </ScrollView>
