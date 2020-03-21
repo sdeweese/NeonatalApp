@@ -7,19 +7,36 @@ import ModulesPage from "./screens/ModulesPage";
 import FeedingYourBaby from "./screens/FeedingYourBaby";
 import KeepingBabyClean from "./screens/KeepingBabyClean";
 import WhenBabyGetsSick from "./screens/WhenBabyGetsSick";
-import Module1b from "./screens/Module1b";
 import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
+import Messages from "./screens/Messages";
+import Database from "./screens/Database";
+
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Modules: { screen: ModulesPage },
-  FeedingYourBaby: { screen: FeedingYourBaby, navigationOptions: { headerTitle: "Feeding Your Baby" } },
-  KeepingBabyClean: { screen: KeepingBabyClean, navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" } },
-  WhenBabyGetsSick: { screen: WhenBabyGetsSick, navigationOptions: { headerTitle: "When Baby Gets Sick" } },
-  Module1b: { screen: Module1b },
+  FeedingYourBaby: {
+    screen: FeedingYourBaby,
+    navigationOptions: { headerTitle: "Feeding Your Baby" } // header at the top of the screen
+  },
+  KeepingBabyClean: {
+    screen: KeepingBabyClean,
+    navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" } // header at the top of the screen
+  },
+  WhenBabyGetsSick: {
+    screen: WhenBabyGetsSick,
+    navigationOptions: { headerTitle: "When Baby Gets Sick" } // header at the top of the screen
+  },
+  Database: {
+    screen: Database,
+    navigationOptions: { headerTitle: "Mother Information" } // header at the top of the screen
+  },
   Resources: { screen: ResourcesMap },
-  Admin: { screen: Admin }
+  Admin: { 
+    screen: Admin, 
+    navigationOptions: { headerTitle: "Administrator" }}, // header at the top of the screen
+  Messages: { screen: Messages } // default header at the top of the screen = Messages
 });
 
 const Container = createAppContainer(NavigationStack);
