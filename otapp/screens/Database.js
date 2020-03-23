@@ -7,11 +7,38 @@ import {
   Dimensions,
   Linking,
   View,
+  AsyncStorage,
   Button
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
+import { useRoute } from '@react-navigation/native';
+
+
+{/* const { MotherName } = route.params; */}
 
 class Database extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            MotherName: '',
+            ChildName: '',
+            DoB: '',
+            Born: '',
+            Phone: '',
+            Notes: ''
+        }
+    }
+
+    retrieveMotherName = async () => {
+        try {
+          const value = await AsyncStorage.getItem('MotherName');
+          if (value !== null) {
+            console.log(value);
+          }
+        } catch (error) {
+          console.log("Data not found");
+        }
+    }
 
   render() {
     return (
@@ -41,8 +68,12 @@ class Database extends React.Component {
         </ExpandableItem>
         <ExpandableItem title="New Mother">
           <Text style={styles.expand}>
+            
+          {/* {AsyncStorage.getItem(MotherName)}
+          {this.props.navigation.state.params.MotherName} */}
            
           </Text>
+          
         </ExpandableItem>
       </ScrollView>
     );

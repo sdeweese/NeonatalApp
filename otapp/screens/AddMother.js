@@ -10,14 +10,17 @@ import {
   TextInput,
   Keyboard,
   Alert,
+  AsyncStorage,
   Button
 } from "react-native";
+
+// import { useRoute } from '@react-navigation/native';
+
 
 class AddMother extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            userId: '',
             MotherName: '',
             ChildName: '',
             DoB: '',
@@ -27,6 +30,26 @@ class AddMother extends React.Component {
         }
     }
 
+    /*const userId = 'This data will not change';*/
+    saveMotherName = async MotherName => {
+        try {
+            await AsyncStorage.setItem('MotherName', MotherName);
+            console.log(MotherName + " Saved Successfully");
+        } catch (error) {
+            console.log("Data not saved properly");
+        }
+    };
+
+    retrieveMotherName = async () => {
+        try {
+          const value = await AsyncStorage.getItem('MotherName');
+          if (value !== null) {
+            console.log(value);
+          }
+        } catch (error) {
+          console.log("Data not found");
+        }
+    }
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -36,9 +59,13 @@ class AddMother extends React.Component {
                 <View>   
                     <Text style={styles.top}>Mother's Name:</Text>
                     <TextInput style={styles.input}
-                        onChangeText = {userId => this.setState({userId})} />    
-                    
-                    <Text style={styles.top}>Child's Name:</Text>
+                        onChangeText={this.saveMotherName}
+                    />
+                        {/*   Note: this is only good for changing the STATE of a variable
+                        onChangeText={MotherName => this.setState({MotherName})}   */} 
+
+                    {/*
+                     <Text style={styles.top}>Child's Name:</Text>
                     <TextInput style={styles.input}
                         onChangeText = {ChildName => this.setState({ChildName})} />                   
 
@@ -58,12 +85,23 @@ class AddMother extends React.Component {
                     <Text style={styles.top}>Notes:</Text>
                     <TextInput style={styles.input}
                         onChangeText = {Notes => this.setState({Notes})} />                   
-                    
+                    */}
+
                     <Button style={styles.btn}
                         title="Submit"
                         onPress={() => this.props.navigation.navigate("Database")}
-                    />
-                </View>
+                        
+                    /> 
+                    
+                    {/* 
+                    onPress={() => alert(this.state.MotherName)}
+                    onPress={() => this.props.navigation.navigate("Database", route)}
+                    
+                    {MotherName: MotherName}
+                    
+                    */} 
+
+                </View> 
 
                 
             </ScrollView>
@@ -72,15 +110,6 @@ class AddMother extends React.Component {
     
 }
 
-    const userId = 'Trial mom data';
-    const saveUserId = async userId => {
-    try {
-        await AsyncStorage.setItem('userId', userId);
-        console.log(userId + " Saved Successfully");
-    } catch (error) {
-        console.log("Data not saved properly");
-    }
-    };
 
     /*saveUserId =()=>{
         const {MotherName, ChildName, DoB, Born, Phone, Notes} = this.state;
