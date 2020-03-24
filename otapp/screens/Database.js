@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
+  TextInput,
   ScrollView,
   Image,
   Dimensions,
@@ -11,7 +12,6 @@ import {
   Button
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
-import { useRoute } from '@react-navigation/native';
 
 
 {/* const { MotherName } = route.params; */}
@@ -29,6 +29,15 @@ class Database extends React.Component {
         }
     }
 
+    saveMotherName = async MotherName => {
+        try {
+            await AsyncStorage.setItem('MotherName', MotherName);
+            console.log(MotherName + " Saved Successfully");
+        } catch (error) {
+            console.log("Data not saved properly");
+        }
+    };
+
     retrieveMotherName = async () => {
         try {
           const value = await AsyncStorage.getItem('MotherName');
@@ -45,11 +54,43 @@ class Database extends React.Component {
       <ScrollView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>Mothers</Text>
-          <Button
+          {/* <Button
             title="+"
             onPress={() => this.props.navigation.navigate("AddMother")}
-          ></Button>
+          ></Button> */}
         </View>
+        <ExpandableItem title="Add a New Mother">
+            <Text>Mother's Name:</Text>
+            <TextInput style={styles.input}
+                onChangeText = {ChildName => this.setState({ChildName})} />    
+
+            <Text>Child's Name:</Text>
+            <TextInput style={styles.input}
+                onChangeText = {ChildName => this.setState({ChildName})} />                   
+
+            <Text>Date of Birth:</Text>
+            <TextInput style={styles.input}
+                onChangeText = {DoB => this.setState({DoB})} />                   
+
+            <Text>Child is Born:</Text>
+            <TextInput style={styles.input}
+                onChangeText = {Born => this.setState({Born})} />                   
+
+            <Text>Phone Number:</Text>
+            <TextInput style={styles.input}
+                onChangeText = {Phone => this.setState({Phone})} />                   
+
+            <Text>Notes:</Text>
+            <TextInput style={styles.input}
+                onChangeText = {Notes => this.setState({Notes})} />                   
+            <Text>{"\n"}</Text>
+            <Button style={styles.btn}
+                title="Submit"
+                onPress={() => this.props.navigation.navigate("Database")}
+            />            
+          {/* {AsyncStorage.getItem(MotherName)}
+          {this.props.navigation.state.params.MotherName} */}
+        </ExpandableItem>
         <ExpandableItem title="Natukunda">  
           <Text style={styles.expand}>
             Child's Name: Balondemu {'\n'}
@@ -66,15 +107,6 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
-        <ExpandableItem title="New Mother">
-          <Text style={styles.expand}>
-            
-          {/* {AsyncStorage.getItem(MotherName)}
-          {this.props.navigation.state.params.MotherName} */}
-           
-          </Text>
-          
-        </ExpandableItem>
       </ScrollView>
     );
   }
@@ -87,6 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
+    color: "black",
     flexDirection: "row"
   },
   container: {
@@ -103,5 +136,13 @@ const styles = StyleSheet.create({
   },
   expand: {
     margin: 10
+  },
+  input: {
+    borderWidth: 1,
+    backgroundColor: 'white',
+    justifyContent: 'flex-start',
+    width: 500,
+    padding: 5,
+    borderRadius: 4
   }
 });
