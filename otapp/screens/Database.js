@@ -19,7 +19,7 @@ import ExpandableItem from "./components/ExpandableItem";
 
 class Database extends React.Component {
 
-    saveMotherName() {
+    saveNewMother() {
         let newMother = {
             MotherName: 'ME',
             ChildName: 'Dembe',
@@ -44,6 +44,7 @@ class Database extends React.Component {
             //alert(JSON.stringify(id)); // shows all data for that user
             let parsed = JSON.parse(id);
             //alert(parsed.MotherName);
+            return parsed;
           }
         } catch (error) {
           console.log(error + " id not found");
@@ -63,7 +64,7 @@ class Database extends React.Component {
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
             <TextInput style={styles.input}
-                onChangeText={this.saveMotherName}/>
+                onChangeText={this.saveNewMother}/>
                 {/*onChangeText = {MotherName => this.setState({MotherName})}   */}  
             
             <Text>Child's Name:</Text>
