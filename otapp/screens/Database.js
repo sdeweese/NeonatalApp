@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   Linking,
+  TouchableOpacity,
   View,
   AsyncStorage,
   Button
@@ -17,35 +18,35 @@ import ExpandableItem from "./components/ExpandableItem";
 {/* const { MotherName } = route.params; */}
 
 class Database extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            MotherName: '',
-            ChildName: '',
-            DoB: '',
-            Born: '',
-            Phone: '',
-            Notes: ''
-        }
-    }
 
-    saveMotherName = async MotherName => {
+    saveMotherName() {
+        let newMother = {
+            MotherName: 'ME',
+            ChildName: 'Dembe',
+            DoB: 'February 29th, 2020',
+            PhoneNumber: '41 902 2938',
+            Notes: 'Tukesiga is planning to come back on March 20th',
+        }
         try {
-            await AsyncStorage.setItem('MotherName', MotherName);
-            console.log(MotherName + " Saved Successfully");
+            AsyncStorage.setItem('id', JSON.stringify(newMother));
+            console.log(JSON.stringify(newMother) + " Saved Successfully");
         } catch (error) {
-            console.log("Data not saved properly");
+            console.log("MotherName not saved properly");
         }
     };
 
-    retrieveMotherName = async () => {
+    retrieveNewMother = async () => {
+        //alert(JSON.stringify(id));
         try {
-          const value = await AsyncStorage.getItem('MotherName');
-          if (value !== null) {
-            console.log(value);
+          let id = await AsyncStorage.getItem('id');
+          if (id !== null) {
+            console.log(id + " Returned Successfully");
+            //alert(JSON.stringify(id)); // shows all data for that user
+            let parsed = JSON.parse(id);
+            //alert(parsed.MotherName);
           }
         } catch (error) {
-          console.log("Data not found");
+          console.log(error + " id not found");
         }
     }
 
@@ -62,8 +63,9 @@ class Database extends React.Component {
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
             <TextInput style={styles.input}
-                onChangeText = {ChildName => this.setState({ChildName})} />    
-
+                onChangeText={this.saveMotherName}/>
+                {/*onChangeText = {MotherName => this.setState({MotherName})}   */}  
+            
             <Text>Child's Name:</Text>
             <TextInput style={styles.input}
                 onChangeText = {ChildName => this.setState({ChildName})} />                   
@@ -107,6 +109,9 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
+        <TouchableOpacity onPress={this.retrieveNewMother}>
+          <Text style={styles.expand}>New Mamma</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
