@@ -14,52 +14,51 @@ import {
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
 
-
-{/* const { MotherName } = route.params; */}
-
 class Database extends React.Component {
 
-    saveNewMother() {
-        let newMother = {
-            MotherName: 'ME',
-            ChildName: 'Dembe',
-            DoB: 'February 29th, 2020',
-            PhoneNumber: '41 902 2938',
-            Notes: 'Tukesiga is planning to come back on March 20th',
-        }
+    setNewMother = async (key, value) => {
         try {
-            AsyncStorage.setItem('id', JSON.stringify(newMother));
-            console.log(JSON.stringify(newMother) + " Saved Successfully");
+            AsyncStorage.setItem(key, value);
+            console.log("Key: " + key + " value: " + value + " Saved Successfully");
         } catch (error) {
             console.log("MotherName not saved properly");
         }
     };
-
-    retrieveNewMother = async () => {
+    
+    getNewMother = async (key) => {
         //alert(JSON.stringify(id));
         try {
-          let id = await AsyncStorage.getItem('id');
-          if (id !== null) {
-            console.log(id + " Returned Successfully");
-            //alert(JSON.stringify(id)); // shows all data for that user
-            let parsed = JSON.parse(id);
+          let value = await AsyncStorage.getItem(key);
+          if (value !== null) {
+            console.log(value + " Returned Successfully");
+            alert(JSON.stringify(value)); // shows all data for that user
+            //let parsed = JSON.parse(id);
             //alert(parsed.MotherName);
-            return parsed;
+            return value;
+          } else {
+            console.log("Sorry, key not found");
           }
         } catch (error) {
           console.log(error + " id not found");
         }
+    };
+
+    saveNewMother = () => {
+        this.setNewMother("Story", "valuable value")
     }
+    
+    readNewMother = () => {
+        this.getNewMother("Story").then( result => {
+            alert("value: " + result)
+        })
+    }
+    
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>Mothers</Text>
-          {/* <Button
-            title="+"
-            onPress={() => this.props.navigation.navigate("AddMother")}
-          ></Button> */}
         </View>
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
@@ -110,7 +109,7 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
-        <TouchableOpacity onPress={this.retrieveNewMother}>
+        <TouchableOpacity onPress={this.readNewMother}>
           <Text style={styles.expand}>New Mamma</Text>
         </TouchableOpacity>
       </ScrollView>
