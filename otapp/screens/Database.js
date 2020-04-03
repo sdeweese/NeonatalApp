@@ -43,16 +43,27 @@ class Database extends React.Component {
         }
     };
 
+    removeMother = async (key) => {
+        try {
+            await AsyncStorage.removeItem(key);
+        } catch (error) {
+            console.log(error + ": error removing data");
+        }
+    };
+
     saveNewMother = () => {
-        this.setNewMother("Story", "valuable value")
+        this.setNewMother("Sam", "Sam's data")
     }
     
     readNewMother = () => {
-        this.getNewMother("Story").then( result => {
+        this.getNewMother("Sam").then( result => {
             alert("value: " + result)
         })
     }
-    
+
+    deleteMother = () => {
+        this.removeMother("Sam")
+    }
 
   render() {
     return (
@@ -109,8 +120,14 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
+        <TouchableOpacity onPress={this.saveNewMother}>
+          <Text style={styles.expand}>Set</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={this.readNewMother}>
-          <Text style={styles.expand}>New Mamma</Text>
+          <Text style={styles.expand}>Read</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.deleteMother}>
+          <Text style={styles.expand}>Remove</Text>
         </TouchableOpacity>
       </ScrollView>
     );
