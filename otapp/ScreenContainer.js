@@ -11,7 +11,6 @@ import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
 import Messages from "./screens/Messages";
 import Database from "./screens/Database";
-import AddMother from "./screens/AddMother";
 
 
 const NavigationStack = createStackNavigator({
@@ -37,10 +36,6 @@ const NavigationStack = createStackNavigator({
   Admin: { 
     screen: Admin, 
     navigationOptions: { headerTitle: "Administrator" }}, // header at the top of the screen
-  AddMother: { 
-    screen: AddMother,
-    navigationOptions: { headerTitle: "Add Mother" }}, // header at the top of the screen },
-  Messages: { screen: Messages } // default header at the top of the screen = Messages
 });
 
 const Container = createAppContainer(NavigationStack);
