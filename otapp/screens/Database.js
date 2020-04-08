@@ -75,7 +75,7 @@ class Database extends React.Component {
     }
     
     readNewMother = () => {
-        this.getNewMother("8383").then( result => {
+        this.getNewMother("41 902 2938").then( result => {
             let parsed = JSON.parse(result);
             alert("Mother Name: " + parsed.MotherName + "\n" +
                 "Child's Name: " + parsed.ChildName + "\n" +
