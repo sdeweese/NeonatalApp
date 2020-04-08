@@ -16,12 +16,24 @@ import ExpandableItem from "./components/ExpandableItem";
 
 class Database extends React.Component {
 
+    constructor (props) {
+        super(props)
+        this.state = {
+            MotherName: '',
+            ChildName: '',
+            DoB: '',
+            Born: '',
+            Phone: '',
+            Notes: ''
+        }
+     }
+
     setNewMother = async (key, value) => {
         try {
-            AsyncStorage.setItem(key, value);
-            console.log("Key: " + key + " value: " + value + " Saved Successfully");
+            AsyncStorage.setItem(key, JSON.stringify(value));
+            console.log("Key: " + key + " Saved Successfully");
         } catch (error) {
-            console.log("MotherName not saved properly");
+            console.log("Mother not saved properly");
         }
     };
     
@@ -31,7 +43,7 @@ class Database extends React.Component {
           let value = await AsyncStorage.getItem(key);
           if (value !== null) {
             console.log(value + " Returned Successfully");
-            alert(JSON.stringify(value)); // shows all data for that user
+            //alert(JSON.stringify(value)); // shows all data for that user
             //let parsed = JSON.parse(id);
             //alert(parsed.MotherName);
             return value;
@@ -52,21 +64,37 @@ class Database extends React.Component {
     };
 
     saveNewMother = () => {
-        this.setNewMother("Sam", "Sam's data")
+        this.setNewMother("41 902 2938", {
+            MotherName: 'Mamma Name',
+            ChildName: 'Dembe',
+            DoB: 'February 29th, 2020',
+            Born: 'Yes',
+            Phone: '41 902 2938',
+            Notes: 'Tukesiga is planning to come back on April 20th'
+        })
     }
     
     readNewMother = () => {
-        this.getNewMother("Sam").then( result => {
-            alert("value: " + result)
+        this.getNewMother("8383").then( result => {
+            let parsed = JSON.parse(result);
+            alert("Mother Name: " + parsed.MotherName + "\n" +
+                "Child's Name: " + parsed.ChildName + "\n" +
+                "Child's Birthdate: " + parsed.DoB + "\n" +
+                "Status Born:" + parsed.Born + "\n" + 
+                "Phone Number: " + parsed.Phone + "\n" +
+                "Notes: " + parsed.Notes
+                )
         })
     }
 
     deleteMother = () => {
-        this.removeMother("Sam")
+        this.removeMother("41 902 2938")
     }
 
   render() {
+    const { input } = this.state
     return (
+        
       <ScrollView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>Mothers</Text>
@@ -74,32 +102,35 @@ class Database extends React.Component {
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
             <TextInput style={styles.input}
-                onChangeText={this.saveNewMother}/>
-                {/*onChangeText = {MotherName => this.setState({MotherName})}   */}  
-            
+                onChangeText = {MotherName => this.setState({MotherName: MotherName})} />
+
             <Text>Child's Name:</Text>
             <TextInput style={styles.input}
-                onChangeText = {ChildName => this.setState({ChildName})} />                   
+                onChangeText = {ChildName => this.setState({ChildName: ChildName})} />                   
 
             <Text>Date of Birth:</Text>
             <TextInput style={styles.input}
-                onChangeText = {DoB => this.setState({DoB})} />                   
+                onChangeText = {DoB => this.setState({DoB: DoB})} />                   
 
             <Text>Child is Born:</Text>
             <TextInput style={styles.input}
-                onChangeText = {Born => this.setState({Born})} />                   
+                onChangeText = {Born => this.setState({Born: Born})} />                   
 
             <Text>Phone Number:</Text>
             <TextInput style={styles.input}
-                onChangeText = {Phone => this.setState({Phone})} />                   
+                onChangeText = {Phone => this.setState({Phone: Phone})} />                   
 
             <Text>Notes:</Text>
             <TextInput style={styles.input}
-                onChangeText = {Notes => this.setState({Notes})} />                   
+                onChangeText = {Notes => this.setState({Notes: Notes})} />                   
             <Text>{"\n"}</Text>
             <Button style={styles.btn}
                 title="Submit"
-                onPress={() => this.props.navigation.navigate("Database")}
+                onPress={() => {this.setNewMother(this.state.Phone, 
+                    { MotherName: this.state.MotherName, ChildName: this.state.ChildName, DoB: this.state.DoB, 
+                        Born: this.state.Born, Phone: this.state.Phone, Notes: this.state.Notes
+                    }
+                    )}}
             />            
           {/* {AsyncStorage.getItem(MotherName)}
           {this.props.navigation.state.params.MotherName} */}
@@ -108,6 +139,7 @@ class Database extends React.Component {
           <Text style={styles.expand}>
             Child's Name: Balondemu {'\n'}
             Date of Birth: March 24th, 2020 {'\n'}
+            Born: Yes {'\n'}
             Phone Number: 41 589 4931 {'\n'}
             Notes: 
           </Text>
@@ -116,6 +148,7 @@ class Database extends React.Component {
           <Text style={styles.expand}>
             Child's Name: Dembe {'\n'}
             Date of Birth: February 29th, 2020 {'\n'}
+            Born: Yes {'\n'}
             Phone Number: 41 902 2938 {'\n'}
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
