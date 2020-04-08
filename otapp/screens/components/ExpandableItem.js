@@ -3,14 +3,12 @@ import {
   StyleSheet,
   View,
   Text,
-  Alert,
   TouchableHighlight,
-  Modal,
   Image,
   Animated
 } from "react-native";
 
-class ResourceItem extends React.Component {
+class ExpandableItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,9 +18,9 @@ class ResourceItem extends React.Component {
     };
 
     this.state = {
-      title: props.resource,
+      title: props.title,
       expanded: false,
-      animation: new Animated.Value(50)
+      animation: new Animated.Value(55)
     };
   }
   //state = { modalVisible: false };
@@ -49,13 +47,13 @@ class ResourceItem extends React.Component {
 
   _setMaxHeight(event) {
     this.setState({
-      maxHeight: event.nativeEvent.layout.height
+      maxHeight: event.nativeEvent.layout.height + 5
     });
   }
 
   _setMinHeight(event) {
     this.setState({
-      minHeight: event.nativeEvent.layout.height
+      minHeight: event.nativeEvent.layout.height + 10
     });
   }
 
@@ -91,54 +89,9 @@ class ResourceItem extends React.Component {
       </Animated.View>
     );
   }
-
-  /*   setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
-  } */
-
-  /*   render() {
-    return (
-      <View style={styles.listItem}>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          supportedOrientations={['landscape']}
-          onRequestClose={() => {
-            this.setModalVisible(!this.state.modalVisible);
-          }}
-        >
-          <View style={styles.listItem}>
-            <Text style={styles.text}>{this.props.resource}</Text>
-            <Text style={styles.text}>Address: {this.props.address}</Text>
-            <Text style={styles.text}>
-              Telephone Number: {this.props.phone}
-            </Text>
-            <TouchableHighlight
-              style={styles.touch}
-              onPress={() => {
-                this.setModalVisible(!this.state.modalVisible);
-              }}
-            >
-              <Text style={styles.text}>Close Window</Text>
-            </TouchableHighlight>
-          </View>
-        </Modal>
-
-        <TouchableHighlight
-          supportedOrientations={['landscape']}
-          onPress={() => {
-            this.setModalVisible(true);
-          }}
-        >
-          <Text style={styles.button}>{this.props.resource}</Text>
-        </TouchableHighlight>
-      </View>
-    );
-  } */
 }
 
-export default ResourceItem;
+export default ExpandableItem;
 
 const styles = StyleSheet.create({
   container: {
@@ -153,7 +106,8 @@ const styles = StyleSheet.create({
 
   title: {
     flex: 1,
-    padding: 15,
+    margin: 10,
+    marginBottom: 15,
     color: "#2a2f43",
     fontWeight: "bold"
   },
@@ -169,25 +123,4 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 0
   }
-  /* listItem: {
-    marginVertical: 15,
-    marginHorizontal: 25
-  },
-  text: {
-    fontSize: 18,
-    padding: 5
-  },
-  touch: {
-    padding: 12,
-    borderWidth: 1,
-    borderColor: "lightgray"
-  },
-  button: {
-    fontSize: 18,
-    padding: 12,
-    borderWidth: 1,
-    borderRadius: 4,
-    borderStyle: "dotted",
-    borderColor: "green"
-  } */
 });
