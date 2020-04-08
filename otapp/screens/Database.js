@@ -91,8 +91,20 @@ class Database extends React.Component {
         this.removeMother("41 902 2938")
     }
 
+  
+    renderMothers = () =>{
+    AsyncStorage.getAllKeys().then((keys) => {
+    return AsyncStorage.multiGet(keys)
+      .then((result) => {
+        console.log(result);
+      }).catch((e) =>{
+        console.log(e);
+      });
+  });
+}
+    
+
   render() {
-    const { input } = this.state
     return (
         
       <ScrollView style={styles.container}>
@@ -132,9 +144,9 @@ class Database extends React.Component {
                     }
                     )}}
             />            
-          {/* {AsyncStorage.getItem(MotherName)}
-          {this.props.navigation.state.params.MotherName} */}
+          
         </ExpandableItem>
+      
         <ExpandableItem title="Natukunda">  
           <Text style={styles.expand}>
             Child's Name: Balondemu {'\n'}
@@ -153,6 +165,9 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
+        <TouchableOpacity onPress={this.renderMothers}>
+          <Text style={styles.expand}>Get All Keys</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={this.saveNewMother}>
           <Text style={styles.expand}>Set</Text>
         </TouchableOpacity>
