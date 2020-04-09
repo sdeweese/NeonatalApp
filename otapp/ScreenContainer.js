@@ -33,10 +33,10 @@ const NavigationStack = createStackNavigator({
     navigationOptions: { headerTitle: "Mother Information" } // header at the top of the screen
   },
   Resources: { screen: ResourcesMap },
+  Messages: { screen: Messages },
   Admin: { 
     screen: Admin, 
     navigationOptions: { headerTitle: "Administrator" }}, // header at the top of the screen
-  Messages: { screen: Messages } // default header at the top of the screen = Messages
 });
 
 const Container = createAppContainer(NavigationStack);
