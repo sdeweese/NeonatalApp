@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
+  AsyncStorage,
 } from "react-native";
 
 class Admin extends React.Component {
@@ -14,6 +15,7 @@ class Admin extends React.Component {
     this.state = {
       email: "",
       password: "",
+      userData: {},
     };
   }
 
@@ -24,6 +26,24 @@ class Admin extends React.Component {
   handlePassword = (text) => {
     this.setState({ password: text });
   };
+
+  async storeToken(user) {
+    try {
+      await AsyncStorage.setItem("userData", JSON.stringify(user));
+    } catch (error) {
+      console.log("Error storing token.", error);
+    }
+  }
+
+  async getToken(user) {
+    try {
+      let userData = await AsyncStorage.getItem("userData");
+      let data = JSON.parse(userData);
+      console.log(data);
+    } catch (error) {
+      console.log("Error retrieving token.", error);
+    }
+  }
 
   login = (email, pass) => {
     if (email == "omwanathrive@gmail.com" && pass == "123") {
