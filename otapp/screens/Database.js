@@ -92,13 +92,16 @@ class Database extends React.Component {
     }
 
   
-    renderMothers = () =>{
+    renderMothers = () => {
     AsyncStorage.getAllKeys().then((keys) => {
     return AsyncStorage.multiGet(keys)
       .then((result) => {
         console.log(result);
-      }).catch((e) =>{
-        console.log(e);
+        let parsed = JSON.parse(result[0][1]);
+        alert(parsed.MotherName);
+
+      }).catch((error) => {
+        console.log(error);
       });
   });
 }
