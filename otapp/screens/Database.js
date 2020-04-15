@@ -92,19 +92,38 @@ class Database extends React.Component {
     }
 
   
-    renderMothers = () => {
-    AsyncStorage.getAllKeys().then((keys) => {
-    return AsyncStorage.multiGet(keys)
-      .then((result) => {
-        console.log(result);
-        let parsed = JSON.parse(result[0][1]);
-        alert(parsed.MotherName);
+    renderMothers = async () => {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      try {
+      
+        //console.log(result); // array of arrays 
+        //console.log(JSON.parse(result[0][1])); // all the info about the first mother in the array of arrays
+        //console.log(JSON.parse(result[0][1]).MotherName); // the name of the first mother in the array of arrays
+        
+        for (const mom of result) { 
+          console.log(mom[0], JSON.parse(mom[1]));
+          
+          
+          <ExpandableItem title={JSON.parse(mom[1]).MotherName}>
+          <Text style={styles.expand}>
+            Child's Name: {JSON.parse(mom[1]).ChildName} {'\n'}
+            Date of Birth: {JSON.parse(mom[1]).DoB} {'\n'}
+            Born: {JSON.parse(mom[1]).Born} {'\n'}
+            Phone Number: {JSON.parse(mom[1]).Phone} {'\n'}
+            Notes: {JSON.parse(mom[1]).Notes}
+          </Text>
+        </ExpandableItem>
+        
+  
+      
+          }
+   
+      } catch(error) {
+          console.log(error);
+      }
+    }
 
-      }).catch((error) => {
-        console.log(error);
-      });
-  });
-}
     
 
   render() {
@@ -141,11 +160,19 @@ class Database extends React.Component {
             <Text>{"\n"}</Text>
             <Button style={styles.btn}
                 title="Submit"
-                onPress={() => {this.setNewMother(this.state.Phone, 
+                onPress={() => {
+                  if(this.state.MotherName != '' && this.state.ChildName != '' && this.state.DoB != '' && this.state.Born != '' && this.state.Phone != '' && this.state.Notes != ''){
+                  this.setNewMother(this.state.Phone, 
                     { MotherName: this.state.MotherName, ChildName: this.state.ChildName, DoB: this.state.DoB, 
                         Born: this.state.Born, Phone: this.state.Phone, Notes: this.state.Notes
                     }
-                    )}}
+                    )
+                    
+                    alert(this.state.MotherName + ' saved!');
+                } else {
+                  alert('Please fill out all fields.' + this.state.MotherName + ' was not saved.');
+                }
+              }}
             />            
           
         </ExpandableItem>
@@ -168,9 +195,11 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
+
         <TouchableOpacity onPress={this.renderMothers}>
-          <Text style={styles.expand}>Get All Keys</Text>
+          <Text style={styles.expand}>Get All Keys or Refresh Mothers</Text>
         </TouchableOpacity>
+
         <TouchableOpacity onPress={this.saveNewMother}>
           <Text style={styles.expand}>Set</Text>
         </TouchableOpacity>
