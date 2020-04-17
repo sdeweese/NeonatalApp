@@ -12,6 +12,7 @@ import {
   AsyncStorage,
   Button
 } from "react-native";
+import _ from 'lodash'
 import ExpandableItem from "./components/ExpandableItem";
 
 class Database extends React.Component {
@@ -101,24 +102,27 @@ class Database extends React.Component {
         //console.log(JSON.parse(result[0][1])); // all the info about the first mother in the array of arrays
         //console.log(JSON.parse(result[0][1]).MotherName); // the name of the first mother in the array of arrays
         
-        for (const mom of result) { 
-          console.log(mom[0], JSON.parse(mom[1]));
-          
-          
-          <ExpandableItem title={JSON.parse(mom[1]).MotherName}>
-          <Text style={styles.expand}>
-            Child's Name: {JSON.parse(mom[1]).ChildName} {'\n'}
-            Date of Birth: {JSON.parse(mom[1]).DoB} {'\n'}
-            Born: {JSON.parse(mom[1]).Born} {'\n'}
-            Phone Number: {JSON.parse(mom[1]).Phone} {'\n'}
-            Notes: {JSON.parse(mom[1]).Notes}
-          </Text>
-        </ExpandableItem>
+        alert(JSON.parse(result[0][1]).MotherName); 
+
+        return ( result.map(mom => { // mom is every array (within the larger array)
+            //JSON.stringify(JSON.parse(mom[1]).ChildName)
+            return (mom[0])
+        }
+        )
+        )
         
-  
-      
-          }
-   
+ 
+        
+        // sort array by mother names
+        //var sortedmoms = _.sortBy( moms, 'MotherName' ); 
+        //console.log('++++++++++++++++++++++++++++++++++++++++++++ SORTED?????????? \n' + sortedmoms);
+        
+
+        // create an expandable item for each mom -- currently the code below does not display on the page, as intended
+    
+ 
+          
+ 
       } catch(error) {
           console.log(error);
       }
@@ -167,7 +171,7 @@ class Database extends React.Component {
                         Born: this.state.Born, Phone: this.state.Phone, Notes: this.state.Notes
                     }
                     )
-                    
+
                     alert(this.state.MotherName + ' saved!');
                 } else {
                   alert('Please fill out all fields.' + this.state.MotherName + ' was not saved.');
@@ -196,9 +200,7 @@ class Database extends React.Component {
           </Text>
         </ExpandableItem>
 
-        <TouchableOpacity onPress={this.renderMothers}>
-          <Text style={styles.expand}>Get All Keys or Refresh Mothers</Text>
-        </TouchableOpacity>
+
 
         <TouchableOpacity onPress={this.saveNewMother}>
           <Text style={styles.expand}>Set</Text>
