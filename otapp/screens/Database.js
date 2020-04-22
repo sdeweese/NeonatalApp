@@ -162,6 +162,10 @@ class Database extends React.Component {
         <TouchableOpacity onPress={this.deleteMother}>
           <Text style={styles.expand}>Remove</Text>
         </TouchableOpacity>
+        <Button
+          title="send_sms.js"
+          onPress={() => this.props.navigation.navigate("send_sms", '')}
+        />
       </ScrollView>
     );
   }
