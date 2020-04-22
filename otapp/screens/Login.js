@@ -22,14 +22,14 @@ class Login extends React.Component {
     try {
       const userData = await AsyncStorage.getItem(email);
       if (userData !== null && userData === pass) {
-        alert("Log in successful!");
+        //alert("Log in successful!");
         this.props.navigation.navigate("Admin");
         this.setState({
           email: "",
           password: "",
         });
       } else {
-        alert("Log in failed :(");
+        alert("Log in failed. :(");
       }
     } catch (error) {
       console.log("User not found.", error);
