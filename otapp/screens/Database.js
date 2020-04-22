@@ -102,11 +102,13 @@ class Database extends React.Component {
         //console.log(JSON.parse(result[0][1])); // all the info about the first mother in the array of arrays
         //console.log(JSON.parse(result[0][1]).MotherName); // the name of the first mother in the array of arrays
         
-        alert(JSON.parse(result[0][1]).MotherName); 
+        //alert(JSON.parse(result[0][1]).MotherName); // returns first mother in database
 
         return ( result.map(mom => { // mom is every array (within the larger array)
-            //JSON.stringify(JSON.parse(mom[1]).ChildName)
-            return (mom[0])
+            console.log(JSON.stringify(JSON.parse(mom[1]).ChildName));
+            //alert(mom[0]);
+            //alert(child);
+            //return child;
         }
         )
         )
@@ -140,27 +142,33 @@ class Database extends React.Component {
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
             <TextInput style={styles.input}
-                onChangeText = {MotherName => this.setState({MotherName: MotherName})} />
+                onChangeText = {MotherName => this.setState({MotherName: MotherName})} 
+                value={this.state.MotherName} />
 
             <Text>Child's Name:</Text>
             <TextInput style={styles.input}
-                onChangeText = {ChildName => this.setState({ChildName: ChildName})} />                   
+                onChangeText = {ChildName => this.setState({ChildName: ChildName})} 
+                value={this.state.ChildName}/>                   
 
             <Text>Date of Birth:</Text>
             <TextInput style={styles.input}
-                onChangeText = {DoB => this.setState({DoB: DoB})} />                   
+                onChangeText = {DoB => this.setState({DoB: DoB})} 
+                value={this.state.DoB}/>                   
 
             <Text>Child is Born:</Text>
             <TextInput style={styles.input}
-                onChangeText = {Born => this.setState({Born: Born})} />                   
+                onChangeText = {Born => this.setState({Born: Born})} 
+                value={this.state.Born}/>                   
 
             <Text>Phone Number:</Text>
             <TextInput style={styles.input}
-                onChangeText = {Phone => this.setState({Phone: Phone})} />                   
+                onChangeText = {Phone => this.setState({Phone: Phone})} 
+                value={this.state.Phone}/>                   
 
             <Text>Notes:</Text>
             <TextInput style={styles.input}
-                onChangeText = {Notes => this.setState({Notes: Notes})} />                   
+                onChangeText = {Notes => this.setState({Notes: Notes})} 
+                value={this.state.Notes}/>                   
             <Text>{"\n"}</Text>
             <Button style={styles.btn}
                 title="Submit"
@@ -170,11 +178,19 @@ class Database extends React.Component {
                     { MotherName: this.state.MotherName, ChildName: this.state.ChildName, DoB: this.state.DoB, 
                         Born: this.state.Born, Phone: this.state.Phone, Notes: this.state.Notes
                     }
-                    )
-
+                    );
+                    this.setState({
+                      Phone: '', 
+                      MotherName: '', 
+                      ChildName: '', 
+                      DoB: '', 
+                      Born: '', 
+                      Phone: '', 
+                      Notes: ''
+                      });
                     alert(this.state.MotherName + ' saved!');
                 } else {
-                  alert('Please fill out all fields.' + this.state.MotherName + ' was not saved.');
+                  alert('Please fill out all fields. ' + this.state.MotherName + ' was not saved.');
                 }
               }}
             />            
@@ -199,8 +215,12 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
-
-
+        
+        {/* <Text>{this.renderMothers()}</Text> */} 
+      
+        <TouchableOpacity onPress={this.renderMothers}>
+          <Text style={styles.expand}>Render Mothers</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={this.saveNewMother}>
           <Text style={styles.expand}>Set</Text>
