@@ -24,6 +24,10 @@ class Login extends React.Component {
       if (userData !== null && userData === pass) {
         alert("Log in successful!");
         this.props.navigation.navigate("Admin");
+        this.setState({
+          email: "",
+          password: "",
+        });
       } else {
         alert("Log in failed :(");
       }
@@ -42,6 +46,7 @@ class Login extends React.Component {
           onChangeText={(text) => {
             this.setState({ email: text });
           }}
+          value={this.state.email}
         />
         <TextInput
           style={styles.input}
@@ -51,6 +56,7 @@ class Login extends React.Component {
           onChangeText={(text) => {
             this.setState({ password: text });
           }}
+          value={this.state.password}
         />
         <TouchableOpacity
           style={styles.submitButton}

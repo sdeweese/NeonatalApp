@@ -20,11 +20,23 @@ class SignUp extends React.Component {
 
   async storeUser(email, pass) {
     try {
-      await AsyncStorage.setItem(email, pass);
-      alert("Account created successfully.");
-      console.log("Account created successfully.");
-      console.log(email);
-      console.log(pass);
+      if (
+        (await AsyncStorage.getItem(email)) === null &&
+        email.length > 6 &&
+        pass.length > 6
+      ) {
+        await AsyncStorage.setItem(email, pass);
+        alert("Account created successfully.");
+        console.log("Account created successfully.");
+        console.log(email);
+        console.log(pass);
+        this.setState({
+          email: "",
+          password: "",
+        });
+      } else {
+        alert("Username is already taken or invalid username/password.");
+      }
     } catch (error) {
       console.log("Error creating account.", error);
     }
@@ -40,6 +52,7 @@ class SignUp extends React.Component {
           onChangeText={(text) => {
             this.setState({ email: text });
           }}
+          value={this.state.email}
         />
         <TextInput
           style={styles.input}
@@ -49,7 +62,11 @@ class SignUp extends React.Component {
           onChangeText={(text) => {
             this.setState({ password: text });
           }}
+          value={this.state.password}
         />
+        <Text style={styles.text}>
+          Password must be at least 6 characters long.
+        </Text>
         <TouchableOpacity
           style={styles.submitButton}
           onPress={() => this.storeUser(this.state.email, this.state.password)}
@@ -86,5 +103,8 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     color: "white",
+  },
+  text: {
+    marginLeft: 15,
   },
 });
