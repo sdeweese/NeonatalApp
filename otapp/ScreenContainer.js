@@ -11,6 +11,7 @@ import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
 import Messages from "./screens/Messages";
 import Database from "./screens/Database";
+import Backup from "./screens/Backup";
 
 
 const NavigationStack = createStackNavigator({
@@ -36,7 +37,12 @@ const NavigationStack = createStackNavigator({
   Messages: { screen: Messages },
   Admin: { 
     screen: Admin, 
-    navigationOptions: { headerTitle: "Administrator" }}, // header at the top of the screen
+    navigationOptions: { headerTitle: "Administrator" } // header at the top of the screen
+  }, 
+  Backup: {
+    screen: Backup,
+    navigationOptions: { headerTitle: "Restore Backup" } 
+  },
 });
 
 const Container = createAppContainer(NavigationStack);
