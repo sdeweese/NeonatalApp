@@ -13,6 +13,10 @@ class Admin extends React.Component {
           title="Messages"
           onPress={() => this.props.navigation.navigate("Messages")}
         />
+        <Button
+          title="Restore Backup"
+          onPress={() => this.props.navigation.navigate("Backup")}
+        />
       </View>
     );
   }
