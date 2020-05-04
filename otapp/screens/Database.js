@@ -12,8 +12,8 @@ import {
   AsyncStorage,
   Button
 } from "react-native";
-import _ from 'lodash'
 import ExpandableItem from "./components/ExpandableItem";
+import MotherList from "./components/MotherList";
 
 class Database extends React.Component {
 
@@ -81,7 +81,7 @@ class Database extends React.Component {
             alert("Mother Name: " + parsed.MotherName + "\n" +
                 "Child's Name: " + parsed.ChildName + "\n" +
                 "Child's Birthdate: " + parsed.DoB + "\n" +
-                "Status Born:" + parsed.Born + "\n" + 
+                "Status Born: " + parsed.Born + "\n" + 
                 "Phone Number: " + parsed.Phone + "\n" +
                 "Notes: " + parsed.Notes
                 )
@@ -93,7 +93,7 @@ class Database extends React.Component {
     }
 
   
-    renderMothers = async () => {
+    /* renderMothers = async () => {
       const keys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(keys);
       try {
@@ -105,7 +105,7 @@ class Database extends React.Component {
         //alert(JSON.parse(result[0][1]).MotherName); // returns first mother in database
 
         return ( result.map(mom => { // mom is every array (within the larger array)
-            console.log(JSON.stringify(JSON.parse(mom[1]).ChildName));
+            <Text>{JSON.stringify(JSON.parse(mom[1]).ChildName)}</Text>
             //alert(mom[0]);
             //alert(child);
             //return child;
@@ -130,7 +130,7 @@ class Database extends React.Component {
       }
     }
 
-    
+  */
 
   render() {
     return (
@@ -216,11 +216,15 @@ class Database extends React.Component {
           </Text>
         </ExpandableItem>
         
-        {/* <Text>{this.renderMothers()}</Text> */} 
+        {/* <Text>{this.renderMothers()}</Text> 
       
         <TouchableOpacity onPress={this.renderMothers}>
           <Text style={styles.expand}>Render Mothers</Text>
         </TouchableOpacity>
+*/} 
+
+        <MotherList data={this.state.MotherName} />
+
 
         <TouchableOpacity onPress={this.saveNewMother}>
           <Text style={styles.expand}>Set</Text>
