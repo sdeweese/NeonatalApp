@@ -35,7 +35,6 @@ class Database extends React.Component {
     } catch (error) {
       console.log("Mother not saved properly");
     }
-<<<<<<< HEAD
     
     readNewMother = () => {
         this.getNewMother("41 902 2938").then( result => {
@@ -48,25 +47,6 @@ class Database extends React.Component {
                 "Notes: " + parsed.Notes
                 )
         })
-=======
-  };
-
-  getNewMother = async (key) => {
-    //alert(JSON.stringify(id));
-    try {
-      let value = await AsyncStorage.getItem(key);
-      if (value !== null) {
-        console.log(value + " Returned Successfully");
-        //alert(JSON.stringify(value)); // shows all data for that user
-        //let parsed = JSON.parse(id);
-        //alert(parsed.MotherName);
-        return value;
-      } else {
-        console.log("Sorry, key not found");
-      }
-    } catch (error) {
-      console.log(error + " id not found");
->>>>>>> Emily
     }
   };
 

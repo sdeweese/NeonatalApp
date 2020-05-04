@@ -9,19 +9,19 @@ export default MotherList = async () => {
   return (
     // eventually sort the names before displaying them
     <View>
-      {result.map((mom) => (
-        <ExpandableItem title={mom.MotherName}>
-          <Text>Mother Name: {mom.MotherName}</Text>
-          <Text>Child's Name: {mom.ChildName}</Text>
-          <Text>Child's Birthdate: {mom.DoB}</Text>
-          <Text>Status Born: {mom.Born}</Text>
-          <Text>Phone Number: {mom.Phone}</Text>
-          <Text>Notes: {mom.Notes}</Text>
-          <Button
-            title="Delete" /* onPress={this.props.removeMessage(message)} */
-          />
-        </ExpandableItem>
-      ))}
+        <Text style={styles.text}>List of Mothers</Text>
+        {result.map((mom) => (
+
+            <ExpandableItem title={mom.MotherName}>
+            <Text>Mother Name: {mom.MotherName}</Text>
+            <Text>Child's Name: {mom.ChildName}</Text>
+            <Text>Child's Birthdate: {mom.DoB}</Text>
+            <Text>Status Born: {mom.Born}</Text>
+            <Text>Phone Number: {mom.Phone}</Text>
+            <Text>Notes: {mom.Notes}</Text>
+            </ExpandableItem>
+
+       ))}
     </View>
   );
 };
