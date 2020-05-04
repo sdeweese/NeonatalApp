@@ -49,6 +49,13 @@ class FeedingYourBaby extends React.Component{
                         resizeMode="contain"
                         source={require('../assets/Slide6.png')} />
                 </View>
+                
+                <View style={styles.container}>
+                    <Image 
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
+                        resizeMode="contain"
+                        source={require('../assets/Slide7.png')} />
+                </View>
 
             </ScrollView>
         );
