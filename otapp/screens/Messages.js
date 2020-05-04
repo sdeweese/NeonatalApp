@@ -25,12 +25,10 @@ class Messages extends React.Component {
       schedule: "",
       messages: [],
     };
+    this.removeMessage = this.removeMessage.bind(this);
   }
   componentDidMount() {
-    //const newMessage = this.props
-    //this.setState()
-    let m = this.getMessages();
-    this.setState({ m });
+    this.getMessages();
   }
   async saveMessages(messages) {
     try {
@@ -43,10 +41,12 @@ class Messages extends React.Component {
     try {
       let messages = await AsyncStorage.getItem(STORAGE_KEY);
       if (messages !== null) {
-        return JSON.parse(messages);
+        messages = JSON.parse(messages);
       } else {
-        return [];
+        messages = [];
       }
+      this.setState({ messages });
+      return messages;
     } catch (error) {
       console.log(error, "Not found");
     }
@@ -56,21 +56,52 @@ class Messages extends React.Component {
     try {
       let messages = await this.getMessages();
       console.log(newMessage);
-      messages.push(newMessage);
-      this.saveMessages(messages);
-      this.setState({ messages });
+      if (messages.includes(newMessage)) {
+        //this doesn't rly work...
+        alert("Cannot create duplicate message.");
+      } else {
+        messages.push(newMessage);
+        this.saveMessages(messages);
+        this.setState({ messages });
+      }
     } catch (error) {
       console.log("Error fetching messages", error);
     }
   }
 
-  async removeMessage() {
+  handleMessage = () => {
+    if (this.state.title && this.state.body && this.state.schedule) {
+      this.updateMessages({
+        title: this.state.title,
+        body: this.state.body,
+        schedule: this.state.schedule,
+      });
+    } else {
+      alert("Message fields cannot be blank.");
+    }
+  };
+
+  removeMessage = async (message) => {
     try {
-      await AsyncStorage.removeItem(STORAGE_KEY);
+      let messages = await this.getMessages();
+      messages = messages.filter((val, index, arr) => val !== message);
+      this.saveMessages(messages);
+      this.setState({ messages });
     } catch (error) {
       console.log(error + ": error removing data");
     }
-  }
+  };
+
+  removeAll = async () => {
+    try {
+      let huh = await AsyncStorage.removeItem(STORAGE_KEY);
+      console.log(huh);
+      this.setState({ messages: [] });
+    } catch (error) {
+      console.log(error + ": Remove all messages failed.");
+    }
+  };
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -78,36 +109,28 @@ class Messages extends React.Component {
           <Text style={styles.title}>Messaging Portal</Text>
         </View>
         <View>
-          <Text>NEW MESSAGE</Text>
-          <Text>Title:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ title: text })}
-          />
+          <ExpandableItem title="NEW MESSAGE">
+            <Text>Title:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ title: text })}
+            />
 
-          <Text>Message:</Text>
-          <TextInput
-            style={styles.message}
-            multiline={true}
-            onChangeText={(text) => this.setState({ body: text })}
-          />
+            <Text>Message:</Text>
+            <TextInput
+              style={styles.message}
+              multiline={true}
+              onChangeText={(text) => this.setState({ body: text })}
+            />
 
-          <Text>Scheduled for:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ schedule: text })}
-          />
+            <Text>Scheduled for:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ schedule: text })}
+            />
 
-          <Button
-            title="Submit"
-            onPress={() => {
-              this.updateMessages({
-                title: this.state.title,
-                body: this.state.body,
-                schedule: this.state.schedule,
-              });
-            }}
-          />
+            <Button title="Submit" onPress={this.handleMessage} />
+          </ExpandableItem>
         </View>
         <ExpandableItem title="2 Days">
           <Text style={styles.expand}>
@@ -121,6 +144,7 @@ class Messages extends React.Component {
           </Text>
         </ExpandableItem>
         <MessagesList data={this.state.messages} />
+        <Button title="Delete All" onPress={this.removeAll} />
       </ScrollView>
     );
   }
@@ -156,9 +180,14 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   message: {
-    height: 300,
+    height: "20%",
     backgroundColor: "#f0f0f0",
     padding: 10,
     marginBottom: 15,
+    textAlignVertical: "top",
+  },
+  newM: {
+    backgroundColor: "black",
+    color: "white",
   },
 });
