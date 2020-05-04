@@ -11,31 +11,47 @@ import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
 import Messages from "./screens/Messages";
 import Database from "./screens/Database";
-
+import SignUp from "./screens/SignUp";
+import Login from "./screens/Login";
+import Backup from "./screens/Backup";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Modules: { screen: ModulesPage },
   FeedingYourBaby: {
     screen: FeedingYourBaby,
-    navigationOptions: { headerTitle: "Feeding Your Baby" } // header at the top of the screen
+    navigationOptions: { headerTitle: "Feeding Your Baby" }, // header at the top of the screen
   },
   KeepingBabyClean: {
     screen: KeepingBabyClean,
-    navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" } // header at the top of the screen
+    navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" }, // header at the top of the screen
   },
   WhenBabyGetsSick: {
     screen: WhenBabyGetsSick,
-    navigationOptions: { headerTitle: "When Baby Gets Sick" } // header at the top of the screen
+    navigationOptions: { headerTitle: "When Baby Gets Sick" }, // header at the top of the screen
   },
   Database: {
     screen: Database,
-    navigationOptions: { headerTitle: "Mother Information" } // header at the top of the screen
+    navigationOptions: { headerTitle: "Mother Information" }, // header at the top of the screen
   },
   Resources: { screen: ResourcesMap },
-  Admin: { 
-    screen: Admin, 
-    navigationOptions: { headerTitle: "Administrator" }}, // header at the top of the screen
+  Messages: { screen: Messages },
+
+  Admin: {
+    screen: Admin,
+    navigationOptions: { headerTitle: "Administrator" },
+  }, // header at the top of the screen
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: { headerTitle: "Sign Up" },
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: { headerTitle: "Login" },
+  Backup: {
+    screen: Backup,
+    navigationOptions: { headerTitle: "Restore Backup" } 
+  },
 });
 
 const Container = createAppContainer(NavigationStack);
