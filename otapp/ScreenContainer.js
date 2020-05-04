@@ -13,6 +13,7 @@ import Messages from "./screens/Messages";
 import Database from "./screens/Database";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
+import Backup from "./screens/Backup";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -35,6 +36,7 @@ const NavigationStack = createStackNavigator({
   },
   Resources: { screen: ResourcesMap },
   Messages: { screen: Messages },
+
   Admin: {
     screen: Admin,
     navigationOptions: { headerTitle: "Administrator" },
@@ -46,6 +48,9 @@ const NavigationStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: { headerTitle: "Login" },
+  Backup: {
+    screen: Backup,
+    navigationOptions: { headerTitle: "Restore Backup" } 
   },
 });
 
