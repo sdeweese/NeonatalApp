@@ -11,8 +11,8 @@ attachment = fs.readFileSync(pathToAttachment).toString("base64");
 const msg = {
   to: 'tlee5@scu.edu',
   from: 'omwanathrive@gmail.com',
-  subject: 'Twilio SendGrid Test with Attachment!!!',
-  text: 'Testing the base code for Twilio SendGrid! Along with attachment hopefully :) (if ur seeing this, it worked!) pls enjoy this meme i like hehe',
+  subject: 'Twilio SendGrid Test with Attachment and Scheduling',
+  text: 'Testing the base code for Twilio SendGrid with attachment and scheduling',
   attachments: [
     {
       content: attachment,
@@ -20,7 +20,8 @@ const msg = {
       type: "application/json",
       disposition: "attachment"
     }
-  ]
+  ],
+  "send_at": 1587957300
 };
 sgMail.send(msg).catch(err => {
     console.log(err);

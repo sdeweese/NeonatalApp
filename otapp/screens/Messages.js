@@ -9,11 +9,21 @@ import {
   Linking,
   TouchableOpacity,
   View,
+<<<<<<< HEAD
   AsyncStorage,
   Button
+=======
+  Button,
+  TextInput,
+  AsyncStorage,
+>>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
+import MessagesList from "./components/MessagesList";
 
+const STORAGE_KEY = "MESSAGES";
+
+<<<<<<< HEAD
 class Database extends React.Component {
 
     constructor (props) {
@@ -90,6 +100,93 @@ class Database extends React.Component {
     deleteMother = () => {
         this.removeMother("41 902 2938")
     }
+=======
+class Messages extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      body: "",
+      schedule: "",
+      messages: [],
+    };
+    this.removeMessage = this.removeMessage.bind(this);
+  }
+  componentDidMount() {
+    this.getMessages();
+  }
+  async saveMessages(messages) {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch (error) {
+      console.log(error, "Not saved properly");
+    }
+  }
+  async getMessages() {
+    try {
+      let messages = await AsyncStorage.getItem(STORAGE_KEY);
+      if (messages !== null) {
+        messages = JSON.parse(messages);
+      } else {
+        messages = [];
+      }
+      this.setState({ messages });
+      return messages;
+    } catch (error) {
+      console.log(error, "Not found");
+    }
+  }
+
+  async updateMessages(newMessage) {
+    try {
+      let messages = await this.getMessages();
+      console.log(newMessage);
+      if (messages.includes(newMessage)) {
+        //this doesn't rly work...
+        alert("Cannot create duplicate message.");
+      } else {
+        messages.push(newMessage);
+        this.saveMessages(messages);
+        this.setState({ messages });
+      }
+    } catch (error) {
+      console.log("Error fetching messages", error);
+    }
+  }
+
+  handleMessage = () => {
+    if (this.state.title && this.state.body && this.state.schedule) {
+      this.updateMessages({
+        title: this.state.title,
+        body: this.state.body,
+        schedule: this.state.schedule,
+      });
+    } else {
+      alert("Message fields cannot be blank.");
+    }
+  };
+
+  removeMessage = async (message) => {
+    try {
+      let messages = await this.getMessages();
+      messages = messages.filter((val, index, arr) => val !== message);
+      this.saveMessages(messages);
+      this.setState({ messages });
+    } catch (error) {
+      console.log(error + ": error removing data");
+    }
+  };
+
+  removeAll = async () => {
+    try {
+      let huh = await AsyncStorage.removeItem(STORAGE_KEY);
+      console.log(huh);
+      this.setState({ messages: [] });
+    } catch (error) {
+      console.log(error + ": Remove all messages failed.");
+    }
+  };
+>>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 
   render() {
     const { input } = this.state
@@ -97,7 +194,35 @@ class Database extends React.Component {
         
       <ScrollView style={styles.container}>
         <View style={styles.top}>
+<<<<<<< HEAD
           <Text style={styles.title}>Mothers</Text>
+=======
+          <Text style={styles.title}>Messaging Portal</Text>
+        </View>
+        <View>
+          <ExpandableItem title="NEW MESSAGE">
+            <Text>Title:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ title: text })}
+            />
+
+            <Text>Message:</Text>
+            <TextInput
+              style={styles.message}
+              multiline={true}
+              onChangeText={(text) => this.setState({ body: text })}
+            />
+
+            <Text>Scheduled for:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ schedule: text })}
+            />
+
+            <Button title="Submit" onPress={this.handleMessage} />
+          </ExpandableItem>
+>>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
         </View>
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
@@ -153,6 +278,7 @@ class Database extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
+<<<<<<< HEAD
         <TouchableOpacity onPress={this.saveNewMother}>
           <Text style={styles.expand}>Set</Text>
         </TouchableOpacity>
@@ -162,6 +288,10 @@ class Database extends React.Component {
         <TouchableOpacity onPress={this.deleteMother}>
           <Text style={styles.expand}>Remove</Text>
         </TouchableOpacity>
+=======
+        <MessagesList data={this.state.messages} />
+        <Button title="Delete All" onPress={this.removeAll} />
+>>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
       </ScrollView>
     );
   }
@@ -174,22 +304,27 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
+<<<<<<< HEAD
     color: "black",
     flexDirection: "row"
+=======
+    flexDirection: "row",
+>>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
   },
   container: {
     flex: 1,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: "#d6d7da"
+    borderColor: "#d6d7da",
   },
   title: {
     textAlign: "center",
     fontSize: 32,
     paddingTop: 15,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   expand: {
+<<<<<<< HEAD
     margin: 10
   },
   input: {
@@ -200,4 +335,24 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 4
   }
+=======
+    margin: 10,
+  },
+  input: {
+    backgroundColor: "#f0f0f0",
+    padding: 10,
+    marginBottom: 15,
+  },
+  message: {
+    height: "20%",
+    backgroundColor: "#f0f0f0",
+    padding: 10,
+    marginBottom: 15,
+    textAlignVertical: "top",
+  },
+  newM: {
+    backgroundColor: "black",
+    color: "white",
+  },
+>>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 });
