@@ -32,6 +32,9 @@ If there are any peer dependencies that need to be installed, install them as yo
 React Bootstrap:
 * `npm i react-bootstrap bootstrap`
 
+Twilio:
+* `npm install twilio`
+
 Creating an APK File
 ---------
 * Helpful link in creating APK file: https://docs.expo.io/versions/latest/distribution/building-standalone-apps/#2-configure-appjson
