@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, AsyncStorage } from "react-native";
 import ExpandableItem from "./ExpandableItem";
 
-export default MotherList = async ({ data }) =>  {
+export default MotherList = async () => {
     const keys = await AsyncStorage.getAllKeys();
     const result = await AsyncStorage.multiGet(keys);
 
-    // eventually sort the names before displaying them
-
   return (
+    // eventually sort the names before displaying them
     <View>
       {result.map((mom) => (
         <ExpandableItem title={mom.MotherName}>

@@ -223,7 +223,7 @@ class Database extends React.Component {
         </TouchableOpacity>
 */} 
 
-        <MotherList data={this.state.MotherName} />
+        <MotherList/> 
 
 
         <TouchableOpacity onPress={this.saveNewMother}>
