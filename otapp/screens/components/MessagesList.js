@@ -11,11 +11,9 @@ export default MessagesList = ({ data }) => {
       <Text style={styles.text}>Messages</Text>
       {messages.map((message) => (
         <View style={styles.text}>
-          <ExpandableItem title={message.title}>
             <Text>Title: {message.title}</Text>
             <Text>Message: {message.body}</Text>
             <Text>Scheduled for: {message.schedule}</Text>
-            </ExpandableItem>
         </View>
       ))}
     </View>
