@@ -77,8 +77,16 @@ class Database extends React.Component {
   }
 
   handleMother = () => {
-    if(this.state.MotherName && this.state.ChildName && this.state.DoB && this.state.Born && this.state.Phone && this.state.Notes){
-      this.updateMother({
+    /*alert("Mother Name: " + this.state.MotherName + "\n" +
+                "Child's Name: " + this.state.ChildName + "\n" +
+                "Child's Birthdate: " + this.state.DoB + "\n" +
+                "Status Born: " + this.state.Born + "\n" + 
+                "Phone Number: " + this.state.Phone + "\n" +
+                "Notes: " + this.state.Notes
+                );
+                */
+    if(this.state.MotherName !== '' && this.state.ChildName !== '' && this.state.DoB !== '' && this.state.Born !== '' && this.state.Phone !== '' && this.state.Notes !== ''){
+      this.updateMother({ // this is a mother object
         MotherName: this.state.MotherName,
         ChildName: this.state.ChildName,
         DoB: this.state.DoB,
@@ -126,7 +134,7 @@ class Database extends React.Component {
           <Text>Phone Number:</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => this.setState({ Number: text })}
+            onChangeText={(text) => this.setState({ Phone: text })}
           />
           
           <Text>Notes:</Text>
