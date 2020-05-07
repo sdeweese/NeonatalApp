@@ -65,7 +65,7 @@ class SignUp extends React.Component {
           value={this.state.password}
         />
         <Text style={styles.text}>
-          Password must be at least 6 characters long.
+          Password must be at least 6 characters long and contain one number.
         </Text>
         <TouchableOpacity
           style={styles.submitButton}
