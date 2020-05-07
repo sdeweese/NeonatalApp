@@ -48,9 +48,10 @@ const NavigationStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: { headerTitle: "Login" },
+  },
   Backup: {
     screen: Backup,
-    navigationOptions: { headerTitle: "Restore Backup" } 
+    navigationOptions: { headerTitle: "Restore Backup" },
   },
 });
 
