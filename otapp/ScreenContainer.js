@@ -11,15 +11,9 @@ import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
 import Messages from "./screens/Messages";
 import Database from "./screens/Database";
-<<<<<<< HEAD
 import Backup from "./screens/Backup";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
-=======
-import SignUp from "./screens/SignUp";
-import Login from "./screens/Login";
-import Backup from "./screens/Backup";
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -42,7 +36,6 @@ const NavigationStack = createStackNavigator({
   },
   Resources: { screen: ResourcesMap },
   Messages: { screen: Messages },
-<<<<<<< HEAD
   Admin: { 
     screen: Admin, 
     navigationOptions: { headerTitle: "Administrator" } // header at the top of the screen
@@ -58,24 +51,7 @@ const NavigationStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: { headerTitle: "Login" },
-=======
-
-  Admin: {
-    screen: Admin,
-    navigationOptions: { headerTitle: "Administrator" },
-  }, // header at the top of the screen
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: { headerTitle: "Sign Up" },
-  },
-  Login: {
-    screen: Login,
-    navigationOptions: { headerTitle: "Login" },
-  Backup: {
-    screen: Backup,
-    navigationOptions: { headerTitle: "Restore Backup" } 
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
-  },
+  }
 });
 
 const Container = createAppContainer(NavigationStack);
