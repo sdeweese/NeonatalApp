@@ -5,7 +5,7 @@ import {
   Text,
   TouchableHighlight,
   Image,
-  Animated
+  Animated,
 } from "react-native";
 
 class ExpandableItem extends React.Component {
@@ -14,16 +14,15 @@ class ExpandableItem extends React.Component {
 
     this.icons = {
       up: require("../../assets/arrowhead-up.png"),
-      down: require("../../assets/arrowhead-down.png")
+      down: require("../../assets/arrowhead-down.png"),
     };
 
     this.state = {
       title: props.title,
       expanded: false,
-      animation: new Animated.Value(55)
+      animation: new Animated.Value(55),
     };
   }
-  //state = { modalVisible: false };
 
   toggle() {
     let initialValue = this.state.expanded
@@ -36,24 +35,24 @@ class ExpandableItem extends React.Component {
 
     //console.log(this.state.minHeight);
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !this.state.expanded,
     });
 
     this.state.animation.setValue(initialValue);
     Animated.spring(this.state.animation, {
-      toValue: finalValue
+      toValue: finalValue,
     }).start();
   }
 
   _setMaxHeight(event) {
     this.setState({
-      maxHeight: event.nativeEvent.layout.height + 5
+      maxHeight: event.nativeEvent.layout.height + 5,
     });
   }
 
   _setMinHeight(event) {
     this.setState({
-      minHeight: event.nativeEvent.layout.height + 10
+      minHeight: event.nativeEvent.layout.height + 10,
     });
   }
 
@@ -83,7 +82,7 @@ class ExpandableItem extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
-            {this.props.children}
+            {this.props.children /*this is the child where more info goes */}
           </View>
         </View>
       </Animated.View>
@@ -97,11 +96,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     margin: 10,
-    overflow: "hidden"
+    overflow: "hidden",
   },
 
   titleContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
   title: {
@@ -109,18 +108,18 @@ const styles = StyleSheet.create({
     margin: 10,
     marginBottom: 15,
     color: "#2a2f43",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 
   button: {},
 
   buttonImage: {
     width: 30,
-    height: 25
+    height: 25,
   },
 
   body: {
     padding: 10,
-    paddingTop: 0
-  }
+    paddingTop: 0,
+  },
 });
