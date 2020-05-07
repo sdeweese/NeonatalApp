@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import ExpandableItem from "./ExpandableItem";
 
-export default MotherList = async ({ data }) => {
+export default MotherList = ({ data }) => {
   const mothers = data;
-
+  console.log("Inside the component!");
   return (
     // eventually sort the names before displaying them
     <View>
