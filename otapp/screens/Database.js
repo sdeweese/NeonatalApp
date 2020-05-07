@@ -51,6 +51,8 @@ class Database extends React.Component {
       } else {
         return [];
       }
+      this.setState({ mothers });
+      return mothers;
     } catch (error) {
       console.log(error, "Not found");
     }
@@ -106,47 +108,51 @@ class Database extends React.Component {
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
-          <Text>NEW MOTHER</Text>
-          <Text>Mother Name:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ MotherName: text })}
-          />
+      
+          <ExpandableItem title="NEW MOTHER">
+            <Text>Mother Name:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ MotherName: text })}
+            />
 
-          <Text>Child's Name:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ ChildName: text })}
-          />
+            <Text>Child's Name:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ ChildName: text })}
+            />
 
-          <Text>Child's Birthdate:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ DoB: text })}
-          />
+            <Text>Child's Birthdate:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ DoB: text })}
+            />
 
-          <Text>Status Born:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ Born: text })}
-          />
+            <Text>Status Born:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ Born: text })}
+            />
 
-          <Text>Phone Number:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ Phone: text })}
-          />
-          
-          <Text>Notes:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({ Notes: text })}
-          />
+            <Text>Phone Number:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ Phone: text })}
+            />
+            
+            <Text>Notes:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ Notes: text })}
+            />
 
-          <Button
-            title="Submit"
-            onPress={this.handleMother}/>
+            <Button
+              title="Submit"
+              onPress={this.handleMother}/>
+
+        </ExpandableItem>
         </View>
+
 
         <MotherList data={this.state.mothers} />
 
