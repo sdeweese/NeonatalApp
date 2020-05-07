@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
         />
         <Button
           title="Administrator"
-          onPress={() => this.props.navigation.navigate("Admin")}
+          onPress={() => this.props.navigation.navigate("Login")}
         />
       </View>
     );
@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    flexDirection: "row"
-  }
+    flexDirection: "row",
+  },
 });
