@@ -29,10 +29,12 @@ class Database extends React.Component {
       mothers: [], // list of ALL the mothers
     };
   }
+
   componentDidMount() {
     let m = this.getMothers();
     this.setState({ m });
   }
+
   async saveMothers(mothers) {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(mothers));
@@ -59,8 +61,8 @@ class Database extends React.Component {
       let mothers = await this.getMothers();
       console.log(newMother);
       mothers.push(newMother);
-      this.saveMothers(newMother);
-      this.setState({ newMother });
+      this.saveMothers(mothers);
+      this.setState({ mothers });
     } catch (error) {
       console.log("Error fetching mothers", error);
     }
@@ -74,11 +76,26 @@ class Database extends React.Component {
     }
   }
 
+  handleMother = () => {
+    if(this.state.MotherName && this.state.ChildName && this.state.DoB && this.state.Born && this.state.Phone && this.state.Notes){
+      this.updateMother({
+        MotherName: this.state.MotherName,
+        ChildName: this.state.ChildName,
+        DoB: this.state.DoB,
+        Born: this.state.Born,
+        Phone: this.state.Phone,
+        Notes: this.state.Notes,
+      });
+    } else {
+      alert("Fields cannot be blank.");
+    }
+  };
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.top}>
-          <Text style={styles.title}>Database Portal</Text>
+          <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
           <Text>NEW MOTHER</Text>
@@ -91,7 +108,6 @@ class Database extends React.Component {
           <Text>Child's Name:</Text>
           <TextInput
             style={styles.input}
-            multiline={true}
             onChangeText={(text) => this.setState({ ChildName: text })}
           />
 
@@ -107,7 +123,7 @@ class Database extends React.Component {
             onChangeText={(text) => this.setState({ Born: text })}
           />
 
-          <Text>Number:</Text>
+          <Text>Phone Number:</Text>
           <TextInput
             style={styles.input}
             onChangeText={(text) => this.setState({ Number: text })}
@@ -121,17 +137,7 @@ class Database extends React.Component {
 
           <Button
             title="Submit"
-            onPress={() => {
-              this.updateMothers({
-                MotherName: this.state.MotherName,
-                ChildName: this.state.ChildName,
-                DoB: this.state.DoB,
-                Born: this.state.Born,
-                Phone: this.state.Phone,
-                Notes: this.state.Notes,
-              });
-            }}
-          />
+            onPress={this.handleMother}/>
         </View>
 
         <MotherList data={this.state.mothers} />
