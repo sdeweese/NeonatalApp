@@ -8,6 +8,11 @@ const fs = require("fs");
 pathToAttachment = `${__dirname}/attachment.json`; //file name of the attachment goes here
 attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
+//Get current time (to send automated backup email every day)
+var hours = new Date().getHours(); //To get the Current Hours
+var min = new Date().getMinutes(); //To get the Current Minutes
+var sec = new Date().getSeconds(); //To get the Current Seconds
+
 const msg = {
   to: 'tlee5@scu.edu',
   from: 'omwanathrive@gmail.com',
@@ -23,6 +28,7 @@ const msg = {
   ],
   "send_at": 1587957300
 };
+
 sgMail.send(msg).catch(err => {
     console.log(err);
 });
