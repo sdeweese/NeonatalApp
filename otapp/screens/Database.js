@@ -31,8 +31,7 @@ class Database extends React.Component {
   }
 
   componentDidMount() {
-    let m = this.getMothers();
-    this.setState({ m });
+    this.getMothers();
   }
 
   async saveMothers(mothers) {
@@ -47,12 +46,11 @@ class Database extends React.Component {
     try {
       let mothers = await AsyncStorage.getItem(STORAGE_KEY);
       if (mothers !== null) {
-        return JSON.parse(mothers);
+        mothers = JSON.parse(mothers);
       } else {
-        return [];
+        mothers = [];
       }
       this.setState({ mothers });
-      return mothers;
     } catch (error) {
       console.log(error, "Not found");
     }
@@ -70,14 +68,23 @@ class Database extends React.Component {
     }
   }
 
-  async removeMother() {
+ /*async removeMother(removeMother) {
     try {
-      await AsyncStorage.removeItem(STORAGE_KEY);
+      let old = this.getMothers(); // object version
+      // find the mother to remove in mothers [] 
+      old.forEach(mom => {
+        if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
+          let newMothers = old.slice(0, removeMother); // look into using slice to create a sub array with 1 missing elt
+      });
+      
+      this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
+      this.setState({ newMothers });
+
     } catch (error) {
       console.log(error + ": error removing data");
     }
   }
-
+*/
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
                 "Child's Name: " + this.state.ChildName + "\n" +
