@@ -68,7 +68,7 @@ class Database extends React.Component {
     }
   }
 
-  async removeMother(removeMother) {
+ /*async removeMother(removeMother) {
     try {
       let old = this.getMothers(); // object version
       // find the mother to remove in mothers [] 
@@ -84,7 +84,7 @@ class Database extends React.Component {
       console.log(error + ": error removing data");
     }
   }
-
+*/
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
                 "Child's Name: " + this.state.ChildName + "\n" +
