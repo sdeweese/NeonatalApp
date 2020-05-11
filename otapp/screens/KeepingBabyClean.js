@@ -29,6 +29,13 @@ class KeepingBabyClean extends React.Component{
                         source={require('../assets/Hygiene3.png')} />
                 </View>
 
+                <View style={styles.container}>
+                    <Image 
+                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
+                        resizeMode="contain"
+                        source={require('../assets/Hygiene4.png')} />
+                </View>
+
             </ScrollView>
         );
     }
