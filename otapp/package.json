@@ -16,9 +16,9 @@
 >>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
     "bootstrap": "^4.4.1",
     "expo": "~36.0.0",
-    "jquery": "^3.5.0",
+    "jquery": "^3.5.1",
     "react": "~16.9.0",
-    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-gesture-handler": "^1.5.3",
