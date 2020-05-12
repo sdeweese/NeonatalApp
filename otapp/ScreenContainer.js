@@ -11,9 +11,9 @@ import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
 import Messages from "./screens/Messages";
 import Database from "./screens/Database";
+import Backup from "./screens/Backup";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
-import Backup from "./screens/Backup";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -36,11 +36,14 @@ const NavigationStack = createStackNavigator({
   },
   Resources: { screen: ResourcesMap },
   Messages: { screen: Messages },
-
   Admin: {
     screen: Admin,
-    navigationOptions: { headerTitle: "Administrator" },
-  }, // header at the top of the screen
+    navigationOptions: { headerTitle: "Administrator" }, // header at the top of the screen
+  },
+  Backup: {
+    screen: Backup,
+    navigationOptions: { headerTitle: "Restore Backup" },
+  },
   SignUp: {
     screen: SignUp,
     navigationOptions: { headerTitle: "Sign Up" },
@@ -48,10 +51,6 @@ const NavigationStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: { headerTitle: "Login" },
-  },
-  Backup: {
-    screen: Backup,
-    navigationOptions: { headerTitle: "Restore Backup" },
   },
 });
 
