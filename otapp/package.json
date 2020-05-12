@@ -8,12 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@react-native-community/masked-view": "^0.1.6",
-    "@sendgrid/mail": "^7.0.1",
-=======
     "@react-native-community/masked-view": "^0.1.5",
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
     "bootstrap": "^4.4.1",
     "expo": "~36.0.0",
     "jquery": "^3.5.1",

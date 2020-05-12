@@ -9,98 +9,15 @@ import {
   Linking,
   TouchableOpacity,
   View,
-<<<<<<< HEAD
-  AsyncStorage,
-  Button
-=======
   Button,
   TextInput,
   AsyncStorage,
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
 import MessagesList from "./components/MessagesList";
 
 const STORAGE_KEY = "MESSAGES";
 
-<<<<<<< HEAD
-class Database extends React.Component {
-
-    constructor (props) {
-        super(props)
-        this.state = {
-            MotherName: '',
-            ChildName: '',
-            DoB: '',
-            Born: '',
-            Phone: '',
-            Notes: ''
-        }
-     }
-
-    setNewMother = async (key, value) => {
-        try {
-            AsyncStorage.setItem(key, JSON.stringify(value));
-            console.log("Key: " + key + " Saved Successfully");
-        } catch (error) {
-            console.log("Mother not saved properly");
-        }
-    };
-    
-    getNewMother = async (key) => {
-        //alert(JSON.stringify(id));
-        try {
-          let value = await AsyncStorage.getItem(key);
-          if (value !== null) {
-            console.log(value + " Returned Successfully");
-            //alert(JSON.stringify(value)); // shows all data for that user
-            //let parsed = JSON.parse(id);
-            //alert(parsed.MotherName);
-            return value;
-          } else {
-            console.log("Sorry, key not found");
-          }
-        } catch (error) {
-          console.log(error + " id not found");
-        }
-    };
-
-    removeMother = async (key) => {
-        try {
-            await AsyncStorage.removeItem(key);
-        } catch (error) {
-            console.log(error + ": error removing data");
-        }
-    };
-
-    saveNewMother = () => {
-        this.setNewMother("41 902 2938", {
-            MotherName: 'Mamma Name',
-            ChildName: 'Dembe',
-            DoB: 'February 29th, 2020',
-            Born: 'Yes',
-            Phone: '41 902 2938',
-            Notes: 'Tukesiga is planning to come back on April 20th'
-        })
-    }
-    
-    readNewMother = () => {
-        this.getNewMother("8383").then( result => {
-            let parsed = JSON.parse(result);
-            alert("Mother Name: " + parsed.MotherName + "\n" +
-                "Child's Name: " + parsed.ChildName + "\n" +
-                "Child's Birthdate: " + parsed.DoB + "\n" +
-                "Status Born:" + parsed.Born + "\n" + 
-                "Phone Number: " + parsed.Phone + "\n" +
-                "Notes: " + parsed.Notes
-                )
-        })
-    }
-
-    deleteMother = () => {
-        this.removeMother("41 902 2938")
-    }
-=======
 class Messages extends React.Component {
   constructor(props) {
     super(props);
@@ -186,7 +103,6 @@ class Messages extends React.Component {
       console.log(error + ": Remove all messages failed.");
     }
   };
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 
   render() {
     const { input } = this.state
@@ -194,9 +110,6 @@ class Messages extends React.Component {
         
       <ScrollView style={styles.container}>
         <View style={styles.top}>
-<<<<<<< HEAD
-          <Text style={styles.title}>Mothers</Text>
-=======
           <Text style={styles.title}>Messaging Portal</Text>
         </View>
         <View>
@@ -222,7 +135,6 @@ class Messages extends React.Component {
 
             <Button title="Submit" onPress={this.handleMessage} />
           </ExpandableItem>
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
         </View>
         <ExpandableItem title="Add a New Mother">
             <Text>Mother's Name:</Text>
@@ -278,20 +190,8 @@ class Messages extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
-<<<<<<< HEAD
-        <TouchableOpacity onPress={this.saveNewMother}>
-          <Text style={styles.expand}>Set</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.readNewMother}>
-          <Text style={styles.expand}>Read</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.deleteMother}>
-          <Text style={styles.expand}>Remove</Text>
-        </TouchableOpacity>
-=======
         <MessagesList data={this.state.messages} />
         <Button title="Delete All" onPress={this.removeAll} />
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
       </ScrollView>
     );
   }
@@ -304,12 +204,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-<<<<<<< HEAD
-    color: "black",
-    flexDirection: "row"
-=======
     flexDirection: "row",
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
   },
   container: {
     flex: 1,
@@ -324,18 +219,6 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   expand: {
-<<<<<<< HEAD
-    margin: 10
-  },
-  input: {
-    borderWidth: 1,
-    backgroundColor: 'white',
-    justifyContent: 'flex-start',
-    width: 500,
-    padding: 5,
-    borderRadius: 4
-  }
-=======
     margin: 10,
   },
   input: {
@@ -354,5 +237,4 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     color: "white",
   },
->>>>>>> c5225bc9b88940ba3191c51f9bd3e16fb7ccbe2a
 });
