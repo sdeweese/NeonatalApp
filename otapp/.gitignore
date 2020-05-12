@@ -15,3 +15,4 @@ package.json
 # macOS
 .DS_Store
 sendgrid.env
+sendgrid.env
