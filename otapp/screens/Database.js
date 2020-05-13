@@ -158,11 +158,27 @@ class Database extends React.Component {
               onPress={this.handleMother}/>
 
         </ExpandableItem>
+<<<<<<< HEAD
+        <TouchableOpacity onPress={this.saveNewMother}>
+          <Text style={styles.expand}>Set</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.readNewMother}>
+          <Text style={styles.expand}>Read</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.deleteMother}>
+          <Text style={styles.expand}>Remove</Text>
+        </TouchableOpacity>
+        <Button
+          title="send_sms.js"
+          onPress={() => this.props.navigation.navigate("send_sms", '')}
+        />
+=======
         </View>
 
 
         <MotherList data={this.state.mothers} />
 
+>>>>>>> 2ff12eefdba93092c93286c6d5d3fdca2db737c2
       </ScrollView>
     );
   }
