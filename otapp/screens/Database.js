@@ -68,13 +68,13 @@ class Database extends React.Component {
     }
   }
 
- /*async removeMother(removeMother) {
+  async removeMother(removeMother) {
     try {
       let old = this.getMothers(); // object version
       // find the mother to remove in mothers [] 
       old.forEach(mom => {
         if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
-          let newMothers = old.slice(0, removeMother); // look into using slice to create a sub array with 1 missing elt
+          newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
       });
       
       this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
@@ -84,7 +84,7 @@ class Database extends React.Component {
       console.log(error + ": error removing data");
     }
   }
-*/
+
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
                 "Child's Name: " + this.state.ChildName + "\n" +
@@ -158,27 +158,11 @@ class Database extends React.Component {
               onPress={this.handleMother}/>
 
         </ExpandableItem>
-<<<<<<< HEAD
-        <TouchableOpacity onPress={this.saveNewMother}>
-          <Text style={styles.expand}>Set</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.readNewMother}>
-          <Text style={styles.expand}>Read</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.deleteMother}>
-          <Text style={styles.expand}>Remove</Text>
-        </TouchableOpacity>
-        <Button
-          title="send_sms.js"
-          onPress={() => this.props.navigation.navigate("send_sms", '')}
-        />
-=======
         </View>
 
 
         <MotherList data={this.state.mothers} />
 
->>>>>>> 2ff12eefdba93092c93286c6d5d3fdca2db737c2
       </ScrollView>
     );
   }
