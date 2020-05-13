@@ -12,7 +12,6 @@ import {
   AsyncStorage,
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
-import MessagesList from "./components/MessagesList";
 
 const STORAGE_KEY = "MESSAGES";
 
