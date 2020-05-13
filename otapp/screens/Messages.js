@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
-  TextInput,
   ScrollView,
   Image,
   Dimensions,
   Linking,
-  TouchableOpacity,
   View,
   Button,
   TextInput,
@@ -105,9 +103,7 @@ class Messages extends React.Component {
   };
 
   render() {
-    const { input } = this.state
     return (
-        
       <ScrollView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>Messaging Portal</Text>
@@ -136,58 +132,15 @@ class Messages extends React.Component {
             <Button title="Submit" onPress={this.handleMessage} />
           </ExpandableItem>
         </View>
-        <ExpandableItem title="Add a New Mother">
-            <Text>Mother's Name:</Text>
-            <TextInput style={styles.input}
-                onChangeText = {MotherName => this.setState({MotherName: MotherName})} />
-
-            <Text>Child's Name:</Text>
-            <TextInput style={styles.input}
-                onChangeText = {ChildName => this.setState({ChildName: ChildName})} />                   
-
-            <Text>Date of Birth:</Text>
-            <TextInput style={styles.input}
-                onChangeText = {DoB => this.setState({DoB: DoB})} />                   
-
-            <Text>Child is Born:</Text>
-            <TextInput style={styles.input}
-                onChangeText = {Born => this.setState({Born: Born})} />                   
-
-            <Text>Phone Number:</Text>
-            <TextInput style={styles.input}
-                onChangeText = {Phone => this.setState({Phone: Phone})} />                   
-
-            <Text>Notes:</Text>
-            <TextInput style={styles.input}
-                onChangeText = {Notes => this.setState({Notes: Notes})} />                   
-            <Text>{"\n"}</Text>
-            <Button style={styles.btn}
-                title="Submit"
-                onPress={() => {this.setNewMother(this.state.Phone, 
-                    { MotherName: this.state.MotherName, ChildName: this.state.ChildName, DoB: this.state.DoB, 
-                        Born: this.state.Born, Phone: this.state.Phone, Notes: this.state.Notes
-                    }
-                    )}}
-            />            
-          {/* {AsyncStorage.getItem(MotherName)}
-          {this.props.navigation.state.params.MotherName} */}
-        </ExpandableItem>
-        <ExpandableItem title="Natukunda">  
+        <ExpandableItem title="2 Days">
           <Text style={styles.expand}>
-            Child's Name: Balondemu {'\n'}
-            Date of Birth: March 24th, 2020 {'\n'}
-            Born: Yes {'\n'}
-            Phone Number: 41 589 4931 {'\n'}
-            Notes: 
+            Remember to vaccinate your child against Polio and TB right after
+            birth.
           </Text>
         </ExpandableItem>
-        <ExpandableItem title="Tukesiga">
+        <ExpandableItem title="10 Days">
           <Text style={styles.expand}>
-            Child's Name: Dembe {'\n'}
-            Date of Birth: February 29th, 2020 {'\n'}
-            Born: Yes {'\n'}
-            Phone Number: 41 902 2938 {'\n'}
-            Notes: Tukesiga is planning to come back on March 20th
+            After a week, baby’s umbilical cord should fall off naturally.
           </Text>
         </ExpandableItem>
         {this.state.messages.map((message) => (
@@ -218,7 +171,7 @@ class Messages extends React.Component {
   }
 }
 
-export default Database;
+export default Messages;
 
 const styles = StyleSheet.create({
   top: {
