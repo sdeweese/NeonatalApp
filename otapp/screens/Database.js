@@ -74,7 +74,7 @@ class Database extends React.Component {
       // find the mother to remove in mothers [] 
       old.forEach(mom => {
         if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
-          let newMothers = old.slice(0, removeMother); // look into using slice to create a sub array with 1 missing elt
+          newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
       });
       
       this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
