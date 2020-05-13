@@ -190,7 +190,28 @@ class Messages extends React.Component {
             Notes: Tukesiga is planning to come back on March 20th
           </Text>
         </ExpandableItem>
-        <MessagesList data={this.state.messages} />
+        {this.state.messages.map((message) => (
+          <ExpandableItem title={message.schedule} key={message.schedule}>
+            <Text>Title: {message.title}</Text>
+            <Text>Message: {message.body}</Text>
+            <Text>Scheduled for: {message.schedule}</Text>
+            <Button
+              title="Delete"
+              onPress={async () => {
+                try {
+                  let messages = await this.getMessages();
+                  messages = messages.filter((val) => {
+                    return val.schedule !== message.schedule;
+                  });
+                  this.saveMessages(messages);
+                  this.setState({ messages });
+                } catch (error) {
+                  console.log(error + ": error removing data");
+                }
+              }}
+            />
+          </ExpandableItem>
+        ))}
         <Button title="Delete All" onPress={this.removeAll} />
       </ScrollView>
     );

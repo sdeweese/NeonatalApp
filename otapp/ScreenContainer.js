@@ -36,14 +36,14 @@ const NavigationStack = createStackNavigator({
   },
   Resources: { screen: ResourcesMap },
   Messages: { screen: Messages },
-  Admin: { 
-    screen: Admin, 
-    navigationOptions: { headerTitle: "Administrator" } // header at the top of the screen
-  }, 
+  Admin: {
+    screen: Admin,
+    navigationOptions: { headerTitle: "Administrator" }, // header at the top of the screen
+  },
   Backup: {
     screen: Backup,
-    navigationOptions: { headerTitle: "Restore Backup" } 
-  }, 
+    navigationOptions: { headerTitle: "Restore Backup" },
+  },
   SignUp: {
     screen: SignUp,
     navigationOptions: { headerTitle: "Sign Up" },
@@ -51,7 +51,7 @@ const NavigationStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: { headerTitle: "Login" },
-  }
+  },
 });
 
 const Container = createAppContainer(NavigationStack);
