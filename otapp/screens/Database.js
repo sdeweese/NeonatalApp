@@ -12,7 +12,6 @@ import {
   AsyncStorage,
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
-import MotherList from "./components/MotherList";
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -28,6 +27,7 @@ class Database extends React.Component {
       Notes: "",
       mothers: [], // list of ALL the mothers
     };
+    this.removeMother = this.removeMother.bind(this);
   }
 
   componentDidMount() {
@@ -68,23 +68,6 @@ class Database extends React.Component {
     }
   }
 
-  async removeMother(removeMother) {
-    try {
-      let old = this.getMothers(); // object version
-      // find the mother to remove in mothers [] 
-      old.forEach(mom => {
-        if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
-          newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
-      });
-      
-      this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
-      this.setState({ newMothers });
-
-    } catch (error) {
-      console.log(error + ": error removing data");
-    }
-  }
-
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
                 "Child's Name: " + this.state.ChildName + "\n" +
@@ -107,6 +90,17 @@ class Database extends React.Component {
       alert("Fields cannot be blank.");
     }
   };
+
+  removeMother = async (removeMother) =>  {
+    try {
+      let newMothers = await this.getMothers(); // object version
+      newMothers = newMothers.filter((val, index, arr) => val !== removeMother);
+      this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
+      this.setState({ newMothers });
+    } catch (error) {
+      console.log(error + ": error removing data");
+    }
+  }
 
   render() {
     return (
@@ -158,11 +152,33 @@ class Database extends React.Component {
               onPress={this.handleMother}/>
 
         </ExpandableItem>
-        </View>
-
-
-        <MotherList data={this.state.mothers} />
-
+        
+        {this.state.mothers.map((mom) => (
+          <ExpandableItem title={mom.MotherName} key={mom.MotherName}> 
+            <Text>Mother Name: {mom.MotherName}</Text>
+            <Text>Child's Name: {mom.ChildName}</Text>
+            <Text>Child's Birthdate: {mom.DoB}</Text>
+            <Text>Status Born: {mom.Born}</Text>
+            <Text>Phone Number: {mom.Phone}</Text>
+            <Text>Notes: {mom.Notes}</Text>
+            <Button
+              title="Delete"
+              onPress={async () => {
+                try {
+                  let mothers = await this.getMothers();
+                  mothers = mothers.filter((val) => {
+                    return val.MotherName !== mom.MotherName;
+                  });
+                  this.saveMothers(mothers);
+                  this.setState({ mothers });
+                } catch (error) {
+                  console.log(error + ": error removing data");
+                }
+              }}
+            />
+          </ExpandableItem>
+        ))}
+        </View> 
       </ScrollView>
     );
   }
