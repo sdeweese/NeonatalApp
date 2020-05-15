@@ -69,6 +69,24 @@ class Database extends React.Component {
     }
   }
 
+  async removeMother(removeMother) {
+    try {
+      let old = this.getMothers(); // object version
+      // find the mother to remove in mothers [] 
+      old.forEach(mom => {
+        if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
+          newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
+      });
+      
+      this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
+      this.setState({ newMothers });
+
+    } catch (error) {
+      console.log(error + ": error removing data");
+    }
+  }
+
+
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
                 "Child's Name: " + this.state.ChildName + "\n" +
