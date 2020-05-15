@@ -41,6 +41,9 @@ Set up environment for Sendgrid:
 * `source ./sendgrid.env`
 *  `npm install --save @sendgrid/mail`
 
+Expo FileSystem:
+* `expo install expo-file-system`
+
 Creating an APK File
 ---------
 * Helpful link in creating APK file: https://docs.expo.io/versions/latest/distribution/building-standalone-apps/#2-configure-appjson
