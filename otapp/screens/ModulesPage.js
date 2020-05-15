@@ -6,12 +6,14 @@ class ModulesPage extends React.Component{
         return (
             <View style={styles.container}>
                 <Button
-                    title="Feeding Your Baby"
+                    title="Feeding Your Baby (maroon)"
+                    color="#682f2f" //maroon
                     onPress={() => this.props.navigation.navigate("FeedingYourBaby")}
                 />
                              
                 <Button
                     title="Keeping Baby Clean and Healthy"
+                    color=""
                     onPress={() => this.props.navigation.navigate("KeepingBabyClean")}
                 />
 
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'space-evenly',
-        flexDirection: "row"
+        flexDirection: "row",
+        backgroundColor: "#f2dac8"
     }
 });

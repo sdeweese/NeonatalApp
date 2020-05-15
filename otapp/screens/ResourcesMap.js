@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: "#d6d7da"
+    borderColor: "#d6d7da",
+    backgroundColor: "#f2dac8"
   },
   title: {
     textAlign: "center",
