@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
 import MotherList from "./components/MotherList";
+import * as FileSystem from "expo-file-system";
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -108,14 +109,41 @@ class Database extends React.Component {
     }
   };
 
-  render() {
+  
+  createBackup = () => {
+    try {
+      // get mothers
+      let mothers = this.getMothers();
+      console.log(mothers);
+      let data = JSON.stringify(mothers);
+      console.log(data);
+      // determine file uri
+      let myFolder = FileSystem.documentDirectory;
+      //console.log(myFolder);
+      var month = new Date().getMonth() + 1; //To get the Current Month
+      var date = new Date().getDate(); //To get the Current Date
+      let fileName = 'backup-' + month + '-' + date + '.json';
+      console.log(fileName);
+      let fileUri = myFolder + fileName;
+      console.log(fileUri);
+      // write file
+      FileSystem.writeAsStringAsync(fileUri, data);
+      // read file
+      let result = FileSystem.readAsStringAsync(fileUri);
+      console.log(result);
+    } catch (error) {
+      console.log(error + ": error creating backup");
+    }
+  } 
+
+    render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
-      
+
           <ExpandableItem title="NEW MOTHER">
             <Text>Mother Name:</Text>
             <TextInput
@@ -163,6 +191,10 @@ class Database extends React.Component {
 
         <MotherList data={this.state.mothers} />
 
+          <Button
+            title="Backup"
+            onPress={this.createBackup}/>
+            
       </ScrollView>
     );
   }
