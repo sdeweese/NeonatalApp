@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    flexDirection: "row"
+    flexDirection: "row",
+    backgroundColor: "#f2dac8" //peach
   }
 });
