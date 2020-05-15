@@ -52,6 +52,7 @@ class Database extends React.Component {
         mothers = [];
       }
       this.setState({ mothers });
+      return mothers;
     } catch (error) {
       console.log(error, "Not found");
     }
@@ -110,10 +111,10 @@ class Database extends React.Component {
   };
 
   
-  createBackup = () => {
+  createBackup = async () => {
     try {
       // get mothers
-      let mothers = this.getMothers();
+      let mothers = await this.getMothers();  
       console.log(mothers);
       let data = JSON.stringify(mothers);
       console.log(data);
@@ -128,9 +129,8 @@ class Database extends React.Component {
       console.log(fileUri);
       // write file
       FileSystem.writeAsStringAsync(fileUri, data);
-      // read file
-      let result = FileSystem.readAsStringAsync(fileUri);
-      console.log(result);
+      //let result = FileSystem.readAsStringAsync(fileUri);
+      //console.log(result);
     } catch (error) {
       console.log(error + ": error creating backup");
     }
