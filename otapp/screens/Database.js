@@ -12,7 +12,6 @@ import {
   AsyncStorage,
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
-import MotherList from "./components/MotherList";
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -28,6 +27,7 @@ class Database extends React.Component {
       Notes: "",
       mothers: [], // list of ALL the mothers
     };
+    this.removeMother = this.removeMother.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +51,7 @@ class Database extends React.Component {
         mothers = [];
       }
       this.setState({ mothers });
+      return mothers;
     } catch (error) {
       console.log(error, "Not found");
     }
@@ -58,7 +59,7 @@ class Database extends React.Component {
 
   async updateMother(newMother) {
     try {
-      let mothers = await this.getMothers();
+      let mothers = await this.getMothers(); // []
       console.log(newMother);
       mothers.push(newMother);
       this.saveMothers(mothers);
@@ -85,6 +86,7 @@ class Database extends React.Component {
     }
   }
 
+
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
                 "Child's Name: " + this.state.ChildName + "\n" +
@@ -105,6 +107,27 @@ class Database extends React.Component {
       });
     } else {
       alert("Fields cannot be blank.");
+    }
+  };
+
+  removeMother = async (removeMother) =>  {
+    try {
+      let newMothers = await this.getMothers(); // object version
+      newMothers = newMothers.filter((val, index, arr) => val !== removeMother);
+      this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
+      this.setState({ newMothers });
+    } catch (error) {
+      console.log(error + ": error removing data");
+    }
+  }
+
+  removeAll = async () => {
+    try {
+      let huh = await AsyncStorage.removeItem(STORAGE_KEY);
+      console.log(huh);
+      this.setState({ mothers: [] });
+    } catch (error) {
+      console.log(error + ": Remove all messages failed.");
     }
   };
 
@@ -158,11 +181,34 @@ class Database extends React.Component {
               onPress={this.handleMother}/>
 
         </ExpandableItem>
-        </View>
-
-
-        <MotherList data={this.state.mothers} />
-
+        
+        {this.state.mothers.map((mom) => (
+          <ExpandableItem title={mom.MotherName} key={mom.MotherName}> 
+            <Text>Mother Name: {mom.MotherName}</Text>
+            <Text>Child's Name: {mom.ChildName}</Text>
+            <Text>Child's Birthdate: {mom.DoB}</Text>
+            <Text>Status Born: {mom.Born}</Text>
+            <Text>Phone Number: {mom.Phone}</Text>
+            <Text>Notes: {mom.Notes}</Text>
+            <Button
+              title="Delete"
+              onPress={async () => {
+                try {
+                  let mothers = await this.getMothers();
+                  mothers = mothers.filter((val) => {
+                    return val.MotherName !== mom.MotherName;
+                  });
+                  this.saveMothers(mothers);
+                  this.setState({ mothers });
+                } catch (error) {
+                  console.log(error + ": error removing data");
+                }
+              }}
+            />
+          </ExpandableItem>
+        ))}
+        <Button title="Delete All" onPress={this.removeAll} />
+        </View> 
       </ScrollView>
     );
   }
