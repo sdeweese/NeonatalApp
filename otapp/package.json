@@ -22,7 +22,7 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.15",
-    "twilio": "^3.41.1"
+    "twilio": "^3.41.1",
     "expo-file-system": "~8.0.0"
   },
   "devDependencies": {
