@@ -35,6 +35,12 @@ React Bootstrap:
 Twilio:
 * `npm install twilio`
 
+Set up environment for Sendgrid:
+* `echo "export SENDGRID_API_KEY='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'" > sendgrid.env`
+* `echo "sendgrid.env" >> .gitignore`
+* `source ./sendgrid.env`
+*  `npm install --save @sendgrid/mail`
+
 Creating an APK File
 ---------
 * Helpful link in creating APK file: https://docs.expo.io/versions/latest/distribution/building-standalone-apps/#2-configure-appjson
