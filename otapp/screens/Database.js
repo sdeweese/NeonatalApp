@@ -51,6 +51,7 @@ class Database extends React.Component {
         mothers = [];
       }
       this.setState({ mothers });
+      return mothers;
     } catch (error) {
       console.log(error, "Not found");
     }
@@ -58,7 +59,7 @@ class Database extends React.Component {
 
   async updateMother(newMother) {
     try {
-      let mothers = await this.getMothers();
+      let mothers = await this.getMothers(); // []
       console.log(newMother);
       mothers.push(newMother);
       this.saveMothers(mothers);
@@ -101,6 +102,16 @@ class Database extends React.Component {
       console.log(error + ": error removing data");
     }
   }
+
+  removeAll = async () => {
+    try {
+      let huh = await AsyncStorage.removeItem(STORAGE_KEY);
+      console.log(huh);
+      this.setState({ mothers: [] });
+    } catch (error) {
+      console.log(error + ": Remove all messages failed.");
+    }
+  };
 
   render() {
     return (
@@ -178,6 +189,7 @@ class Database extends React.Component {
             />
           </ExpandableItem>
         ))}
+        <Button title="Delete All" onPress={this.removeAll} />
         </View> 
       </ScrollView>
     );
