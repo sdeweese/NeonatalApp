@@ -7,6 +7,7 @@ class Backup extends React.Component {
       <View style={styles.container}>
         <Button
           title="Upload File"
+          color="#955d74" //dark pink
         />
       </View>
     );

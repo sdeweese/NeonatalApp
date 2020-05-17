@@ -155,6 +155,7 @@ class Database extends React.Component {
 
             <Button
               title="Submit"
+              color="#682f2f"
               onPress={this.handleMother}/>
 
         </ExpandableItem>

@@ -62,7 +62,7 @@ class Login extends React.Component {
           style={styles.submitButton}
           onPress={() => this.login(this.state.email, this.state.password)}
         >
-          <Text style={styles.submitButtonText}> SUBMIT (maroon) </Text>
+          <Text style={styles.submitButtonText}> SUBMIT</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.new}

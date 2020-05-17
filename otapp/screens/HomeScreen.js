@@ -6,18 +6,18 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Button 
-          title="Educational Modules (light pink)"
-          color="#c691a7" //light pink
+          title="Educational Modules"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Modules")}
         />
         <Button
-          title="Resources Map (dark pink)"
+          title="Resources Map"
           color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Resources")}
         />
         <Button
-          title="Administrator (dark brown)"
-          color="#6e412d" //dark brown
+          title="Administrator"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Login")}
         />
       </View>
