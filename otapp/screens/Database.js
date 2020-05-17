@@ -178,6 +178,7 @@ class Database extends React.Component {
 
             <Button
               title="Submit"
+              color="#682f2f"
               onPress={this.handleMother}/>
 
         </ExpandableItem>
@@ -228,6 +229,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "#d6d7da",
+    backgroundColor: "#f2dac8" //peach
   },
   title: {
     textAlign: "center",

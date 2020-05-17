@@ -16,41 +16,121 @@ import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
 
 const NavigationStack = createStackNavigator({
-  Home: { screen: HomeScreen },
-  Modules: { screen: ModulesPage },
+  Home: { screen: HomeScreen,
+    navigationOptions: { 
+      headerStyle: {
+        backgroundColor: "#c691a7",
+        borderBottomColor: "#c691a7",
+        borderBottomWidth: 3
+      },
+    },
+  },
+  Modules: { screen: ModulesPage,
+    navigationOptions: { 
+      headerStyle: {
+        backgroundColor: "#c691a7",
+        borderBottomColor: "#c691a7",
+        borderBottomWidth: 3,
+      },
+    },
+  },
   FeedingYourBaby: {
     screen: FeedingYourBaby,
-    navigationOptions: { headerTitle: "Feeding Your Baby" }, // header at the top of the screen
+      navigationOptions: { headerTitle: "Feeding Your Baby", 
+        headerStyle: {
+          backgroundColor: "#c691a7",
+          borderBottomColor: "#c691a7",
+          borderBottomWidth: 3,
+        },
+      }, // header at the top of the screen
   },
   KeepingBabyClean: {
     screen: KeepingBabyClean,
-    navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy" }, // header at the top of the screen
+    navigationOptions: { headerTitle: "Keeping Baby Clean and Healthy",
+      headerStyle: {
+        backgroundColor: "#c691a7",
+        borderBottomColor: "#c691a7",
+        borderBottomWidth: 3,
+      },
+   }, // header at the top of the screen
   },
   WhenBabyGetsSick: {
     screen: WhenBabyGetsSick,
-    navigationOptions: { headerTitle: "When Baby Gets Sick" }, // header at the top of the screen
+    navigationOptions: { headerTitle: "When Baby Gets Sick",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   }, // header at the top of the screen
   },
   Database: {
     screen: Database,
-    navigationOptions: { headerTitle: "Mother Information" }, // header at the top of the screen
+    navigationOptions: { headerTitle: "Mother Information",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   }, // header at the top of the screen
   },
-  Resources: { screen: ResourcesMap },
-  Messages: { screen: Messages },
+  Resources: { screen: ResourcesMap,
+    navigationOptions: { 
+      headerStyle: {
+        backgroundColor: "#c691a7",
+        borderBottomColor: "#c691a7",
+        borderBottomWidth: 3,
+      },
+    },
+  },
+  Messages: { screen: Messages,
+    navigationOptions: { 
+      headerStyle: {
+        backgroundColor: "#c691a7",
+        borderBottomColor: "#c691a7",
+        borderBottomWidth: 3,
+      },
+    },
+  },
   Admin: {
     screen: Admin,
-    navigationOptions: { headerTitle: "Administrator" }, // header at the top of the screen
+    navigationOptions: { headerTitle: "Administrator",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   }, // header at the top of the screen
   },
   Backup: {
     screen: Backup,
-    navigationOptions: { headerTitle: "Restore Backup" },
+    navigationOptions: { headerTitle: "Restore Backup",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   },
   },
   SignUp: {
     screen: SignUp,
-    navigationOptions: { headerTitle: "Sign Up" },
+    navigationOptions: { headerTitle: "Sign Up",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   },
   },
   Login: {
     screen: Login,
-    navigationOptions: { headerTitle: "Login" },
+    navigationOptions: { headerTitle: "Login",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   },
   },
 });
 
