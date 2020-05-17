@@ -71,7 +71,7 @@ class SignUp extends React.Component {
           style={styles.submitButton}
           onPress={() => this.storeUser(this.state.email, this.state.password)}
         >
-          <Text style={styles.submitButtonText}> SUBMIT (dark brown) </Text>
+          <Text style={styles.submitButtonText}> SUBMIT</Text>
         </TouchableOpacity>
       </View>
     );
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   submitButton: {
-    backgroundColor: "#6e412d", //dark brown
+    backgroundColor: "#682f2f", //maroon
     padding: 10,
     margin: 15,
     alignItems: "center",

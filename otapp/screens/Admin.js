@@ -15,14 +15,17 @@ class Admin extends React.Component {
       <View style={styles.container}>
         <Button
           title="Database"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Database")}
         />
         <Button
           title="Messages"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Messages")}
         />
         <Button
           title="Restore Backup"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Backup")}
         />
       </View>
