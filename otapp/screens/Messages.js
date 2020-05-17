@@ -128,7 +128,7 @@ class Messages extends React.Component {
               onChangeText={(text) => this.setState({ schedule: text })}
             />
 
-            <Button title="Submit" onPress={this.handleMessage} />
+            <Button title="Submit" color="#682f2f" onPress={this.handleMessage} />
           </ExpandableItem>
         </View>
         <ExpandableItem title="2 Days">
@@ -149,6 +149,7 @@ class Messages extends React.Component {
             <Text>Scheduled for: {message.schedule}</Text>
             <Button
               title="Delete"
+              color="red"
               onPress={async () => {
                 try {
                   let messages = await this.getMessages();
@@ -164,7 +165,7 @@ class Messages extends React.Component {
             />
           </ExpandableItem>
         ))}
-        <Button title="Delete All" onPress={this.removeAll} />
+        <Button title="Delete All" color="red" onPress={this.removeAll} />
       </ScrollView>
     );
   }
@@ -184,6 +185,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "#d6d7da",
+    backgroundColor: "#f2dac8" //peach
   },
   title: {
     textAlign: "center",
