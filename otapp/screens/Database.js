@@ -208,7 +208,7 @@ class Database extends React.Component {
             />
           </ExpandableItem>
         ))}
-        <Button title="Delete All" onPress={this.removeAll} />
+        <Button title="Delete All" color="red" onPress={this.removeAll} />
         </View> 
       </ScrollView>
     );
