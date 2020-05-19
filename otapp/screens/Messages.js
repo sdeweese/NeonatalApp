@@ -131,17 +131,7 @@ class Messages extends React.Component {
             <Button title="Submit" color="#682f2f" onPress={this.handleMessage} />
           </ExpandableItem>
         </View>
-        <ExpandableItem title="2 Days">
-          <Text style={styles.expand}>
-            Remember to vaccinate your child against Polio and TB right after
-            birth.
-          </Text>
-        </ExpandableItem>
-        <ExpandableItem title="10 Days">
-          <Text style={styles.expand}>
-            After a week, baby’s umbilical cord should fall off naturally.
-          </Text>
-        </ExpandableItem>
+      
         {this.state.messages.map((message) => (
           <ExpandableItem title={message.schedule} key={message.schedule}>
             <Text>Title: {message.title}</Text>
