@@ -193,6 +193,7 @@ class Database extends React.Component {
             <Text>Notes: {mom.Notes}</Text>
             <Button
               title="Delete"
+              color="red"
               onPress={async () => {
                 try {
                   let mothers = await this.getMothers();

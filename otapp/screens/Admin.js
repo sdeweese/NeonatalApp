@@ -23,11 +23,6 @@ class Admin extends React.Component {
           color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Messages")}
         />
-        <Button
-          title="Restore Backup"
-          color="#955d74" //dark pink
-          onPress={() => this.props.navigation.navigate("Backup")}
-        />
       </View>
     );
   }
