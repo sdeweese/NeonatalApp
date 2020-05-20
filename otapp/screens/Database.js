@@ -9,7 +9,6 @@ import {
   AsyncStorage,
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
-import MotherList from "./components/MotherList";
 import DatePicker from "react-native-datepicker";
 
 const STORAGE_KEY = "MOTHERS";
@@ -20,7 +19,7 @@ class Database extends React.Component {
     this.state = {
       MotherName: "",
       ChildName: "",
-      DoB: "",
+      DoB: new Date(),
       Born: "",
       Phone: "",
       Notes: "",
@@ -162,13 +161,10 @@ class Database extends React.Component {
 
             <Text>Child's Birthdate:</Text>
             <DatePicker
-              style={styles.input}
               date={this.state.DoB}
               mode="date"
+              formate="YYYY-MM-DD"
               placeholder="select birthdate"
-              format="YYYY-MM-DD"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
               onDateChange={(date) => this.setState({ DoB: date })}
             />
 
