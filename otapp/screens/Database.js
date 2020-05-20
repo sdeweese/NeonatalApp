@@ -131,6 +131,37 @@ class Database extends React.Component {
     }
   };
 
+  calcAge(DoB) {  // need DoB (string)
+    // let's assume birth dates are entered as MM-DD-YYYY or M-D-YYYY etc. (can be separated by .,/- or space)
+    var date = new Date().getDate(); //To get the Current Date
+    var month = new Date().getMonth() + 1; //To get the Current Month
+    var year = new Date().getFullYear(); //To get the Current Year
+    let born = DoB.split(/[.,\/ -]/,2); // splits string into array of substrings ["month","date"]
+    let birthmonth = parseInt(born[0]); // parseInt parses string and returns integer
+    let birthdate = parseInt(born[1]);
+    
+    let age = 0; // number of days old
+    if(month-birthmonth >= 2) {
+      age = 29; // as in >28 days as in out of scope for app --> should be deleted
+    } else if(birthmonth == month) {
+      if(date >= birthdate) {
+        age = date-birthdate;
+      } else {  // birth date has not passed yet
+        age = 0;
+      }
+    } else if((birthmonth == 2) && (year % 4 == 0)) { // feb leap year --> 29 days
+      age = 29-birthdate+date;
+    } else if(birthmonth == 2) {  // feb NOT leap year --> 28 days
+      age = 28-birthdate+date;
+    } else if((month <= 7 && month % 2 == 1) || (month >= 8 && month % 2 == 0)) { // jan,mar,may,jul,aug,oct,dec --> 31 days
+      age = 31-birthdate+date;
+    } else { // apr,jun,sep,nov --> 30 days
+      age = 30-birthdate+date;
+    }
+
+    return age;
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -209,6 +240,7 @@ class Database extends React.Component {
           </ExpandableItem>
         ))}
         <Button title="Delete All" color="red" onPress={this.removeAll} />
+        <Button title="calculate age" onPress={() => alert(`${this.calcAge("5/10/20")} days old`)}/>
         </View> 
       </ScrollView>
     );
