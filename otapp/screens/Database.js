@@ -144,14 +144,16 @@ class Database extends React.Component {
     }
   } 
 
-  uploadBackup = async (fileUri, data) => {
+  uploadBackup = async () => { // not functioning yet! // use these params fileUri, data
+    /*
     try {
-      alert(fileUri);
+      // alert(fileUri);
       let update = FileSystem.getInfoAsync(fileUri, data);
       saveMothers(update);
     } catch (error) {
       console.log(error + ": error uploading backup");
     }
+    */
   }
 
   removeMother = async (removeMother) =>  {
@@ -187,11 +189,11 @@ class Database extends React.Component {
             color="#682f2f" //maroon
             onPress={this.createBackup}
         />
-
+         
         <Button
           title="Upload File"
-          color="#955d74" //dark pink
-          onPress={this.uploadBackup("file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540sdeweese%252Fotapp/backup-5-20.json", data)}
+          color="#682f2f" //maroon
+          onPress={this.uploadBackup()} // add in params here!
         />
 
           <ExpandableItem title="NEW MOTHER">
@@ -266,7 +268,7 @@ class Database extends React.Component {
               }}
             />
           </ExpandableItem>
-
+          ))}
           <Button title="Delete All" color="red" onPress={this.removeAll} />
         </View>
       </ScrollView>
