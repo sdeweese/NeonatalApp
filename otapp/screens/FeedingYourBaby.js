@@ -57,13 +57,6 @@ class FeedingYourBaby extends React.Component{
                         source={require('../assets/Slide7.png')} />
                 </View>
 
-                <View style={styles.container}>
-                    <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
-                        resizeMode="contain"
-                        source={require('../assets/Slide7.png')} />
-                </View>
-
             </ScrollView>
         );
     }
@@ -74,6 +67,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor: "#f2dac8" //peach
     }
 });

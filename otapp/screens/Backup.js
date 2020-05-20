@@ -7,6 +7,7 @@ class Backup extends React.Component {
       <View style={styles.container}>
         <Button
           title="Upload File"
+          color="#955d74" //dark pink
         />
       </View>
     );
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    flexDirection: "row"
+    flexDirection: "row",
+    backgroundColor: "#f2dac8" //peach
   }
 });
