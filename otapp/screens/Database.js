@@ -19,7 +19,7 @@ class Database extends React.Component {
     this.state = {
       MotherName: "",
       ChildName: "",
-      DoB: new Date(),
+      DoB: "",
       Born: "",
       Phone: "",
       Notes: "",
@@ -95,7 +95,6 @@ class Database extends React.Component {
                 "Notes: " + this.state.Notes
                 );
                 */
-    console.log(this.state.DoB, typeof this.state.DoB);
     if (
       this.state.MotherName !== "" &&
       this.state.ChildName !== "" &&
@@ -108,7 +107,7 @@ class Database extends React.Component {
         // this is a mother object
         MotherName: this.state.MotherName,
         ChildName: this.state.ChildName,
-        DoB: this.state.DoB,
+        DoB: new Date(this.state.DoB),
         Born: this.state.Born,
         Phone: this.state.Phone,
         Notes: this.state.Notes,
@@ -197,7 +196,7 @@ class Database extends React.Component {
             <ExpandableItem title={mom.MotherName} key={mom.MotherName}>
               <Text>Mother Name: {mom.MotherName}</Text>
               <Text>Child's Name: {mom.ChildName}</Text>
-              <Text>Child's Birthdate: {mom.DoB}</Text>
+              <Text>Child's Birthdate: {mom.DoB.toString()}</Text>
               <Text>Status Born: {mom.Born}</Text>
               <Text>Phone Number: {mom.Phone}</Text>
               <Text>Notes: {mom.Notes}</Text>
