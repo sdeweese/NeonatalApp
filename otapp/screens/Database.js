@@ -188,7 +188,6 @@ class Database extends React.Component {
             <Button
               title="Submit"
               color="#682f2f"
-<<<<<<< HEAD
               onPress={this.handleMother}/>
 
         </ExpandableItem>
@@ -216,9 +215,6 @@ class Database extends React.Component {
                   console.log(error + ": error removing data");
                 }
               }}
-=======
-              onPress={this.handleMother}
->>>>>>> 2af46ecda005f1f937b08fc81d4b277b4bc472a7
             />
           </ExpandableItem>
 
