@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
 import DatePicker from "react-native-datepicker";
+import * as FileSystem from "expo-file-system";
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -117,7 +118,43 @@ class Database extends React.Component {
     }
   };
 
-  removeMother = async (removeMother) => {
+  
+  createBackup = async () => {
+    try {
+      // get mothers
+      let mothers = await this.getMothers();  
+      console.log(mothers);
+      let data = JSON.stringify(mothers);
+      console.log(data);
+      // determine file uri
+      let myFolder = FileSystem.documentDirectory;
+      //console.log(myFolder);
+      var month = new Date().getMonth() + 1; //To get the Current Month
+      var date = new Date().getDate(); //To get the Current Date
+      let fileName = 'backup-' + month + '-' + date + '.json';
+      console.log(fileName);
+      let fileUri = myFolder + fileName;
+      console.log(fileUri);
+      // write file
+      FileSystem.writeAsStringAsync(fileUri, data);
+      //let result = FileSystem.readAsStringAsync(fileUri);
+      //console.log(result);
+    } catch (error) {
+      console.log(error + ": error creating backup");
+    }
+  } 
+
+  uploadBackup = async (fileUri, data) => {
+    try {
+      alert(fileUri);
+      let update = FileSystem.getInfoAsync(fileUri, data);
+      saveMothers(update);
+    } catch (error) {
+      console.log(error + ": error uploading backup");
+    }
+  }
+
+  removeMother = async (removeMother) =>  {
     try {
       let newMothers = await this.getMothers(); // object version
       newMothers = newMothers.filter((val, index, arr) => val !== removeMother);
@@ -145,6 +182,18 @@ class Database extends React.Component {
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
+        <Button
+            title="Backup"
+            color="#682f2f" //maroon
+            onPress={this.createBackup}
+        />
+
+        <Button
+          title="Upload File"
+          color="#955d74" //dark pink
+          onPress={this.uploadBackup("file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540sdeweese%252Fotapp/backup-5-20.json", data)}
+        />
+
           <ExpandableItem title="NEW MOTHER">
             <Text>Mother Name:</Text>
             <TextInput
@@ -218,38 +267,12 @@ class Database extends React.Component {
             />
           </ExpandableItem>
 
-          {this.state.mothers.map((mom) => (
-            <ExpandableItem title={mom.MotherName} key={mom.MotherName}>
-              <Text>Mother Name: {mom.MotherName}</Text>
-              <Text>Child's Name: {mom.ChildName}</Text>
-              <Text>Child's Birthdate: {mom.DoB.toString()}</Text>
-              <Text>Status Born: {mom.Born}</Text>
-              <Text>Phone Number: {mom.Phone}</Text>
-              <Text>Notes: {mom.Notes}</Text>
-              <Button
-                title="Delete"
-                onPress={async () => {
-                  try {
-                    let mothers = await this.getMothers();
-                    mothers = mothers.filter((val) => {
-                      return val.MotherName !== mom.MotherName;
-                    });
-                    this.saveMothers(mothers);
-                    this.setState({ mothers });
-                  } catch (error) {
-                    console.log(error + ": error removing data");
-                  }
-                }}
-              />
-            </ExpandableItem>
-          ))}
           <Button title="Delete All" color="red" onPress={this.removeAll} />
         </View>
       </ScrollView>
     );
   }
 }
-
 export default Database;
 
 const styles = StyleSheet.create({

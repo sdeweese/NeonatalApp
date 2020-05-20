@@ -124,7 +124,6 @@ class Messages extends React.Component {
             />
           </ExpandableItem>
         </View>
-
         {this.state.messages.map((message) => (
           <ExpandableItem
             title={message.schedule + " Days"}
