@@ -1,9 +1,9 @@
 Neonatal App
 ---------
-This application will have three main components:
+This application has three main components:
 1. Story Modules for educational storytelling
-1. Resources map 
-1. Message Portal with a locally stored (to ensure database to store contact information 
+1. Resources Map 
+1. Admin Portal with locally stored database (to store contact mother's information)
 
 Initial Setup
 ---------
@@ -20,7 +20,7 @@ Download the Expo Cli app on the phone.
 
 App-Specific downloads
 ---------
-To be able to naviage between screens, install the following: https://facebook.github.io/react-native/docs/navigation
+To be able to navigate between screens, install the following: https://facebook.github.io/react-native/docs/navigation
 * `npm install --save react-navigation`
 * `npm install --save react-native-gesture-handler`
 * `npm install --save react-navigation-stack`
@@ -29,7 +29,7 @@ If there are any peer dependencies that need to be installed, install them as yo
 * `npm install --save @react-native-community/masked-view`
 * `npm install --save react-native-safe-area-context`
 
-React Bootstrap:
+React Bootstrap: (optional because not currently used)
 * `npm i react-bootstrap bootstrap`
 
 Twilio:
