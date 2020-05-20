@@ -3,9 +3,6 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Image,
-  Dimensions,
-  Linking,
   View,
   Button,
   TextInput,
@@ -13,6 +10,7 @@ import {
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
 import MotherList from "./components/MotherList";
+import DatePicker from "react-native-datepicker";
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -71,15 +69,17 @@ class Database extends React.Component {
   async removeMother(removeMother) {
     try {
       let old = this.getMothers(); // object version
-      // find the mother to remove in mothers [] 
-      old.forEach(mom => {
-        if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
+      // find the mother to remove in mothers []
+      old.forEach((mom) => {
+        if (
+          mom.Phone === removeMother.Phone &&
+          mom.MotherName === removeMother.MotherName
+        )
           newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
       });
-      
+
       this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
       this.setState({ newMothers });
-
     } catch (error) {
       console.log(error + ": error removing data");
     }
@@ -94,8 +94,17 @@ class Database extends React.Component {
                 "Notes: " + this.state.Notes
                 );
                 */
-    if(this.state.MotherName !== '' && this.state.ChildName !== '' && this.state.DoB !== '' && this.state.Born !== '' && this.state.Phone !== '' && this.state.Notes !== ''){
-      this.updateMother({ // this is a mother object
+    console.log(this.state.DoB, typeof this.state.DoB);
+    if (
+      this.state.MotherName !== "" &&
+      this.state.ChildName !== "" &&
+      this.state.DoB !== "" &&
+      this.state.Born !== "" &&
+      this.state.Phone !== "" &&
+      this.state.Notes !== ""
+    ) {
+      this.updateMother({
+        // this is a mother object
         MotherName: this.state.MotherName,
         ChildName: this.state.ChildName,
         DoB: this.state.DoB,
@@ -115,7 +124,6 @@ class Database extends React.Component {
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
-      
           <ExpandableItem title="NEW MOTHER">
             <Text>Mother Name:</Text>
             <TextInput
@@ -130,12 +138,18 @@ class Database extends React.Component {
             />
 
             <Text>Child's Birthdate:</Text>
-            <TextInput
+            <DatePicker
               style={styles.input}
-              onChangeText={(text) => this.setState({ DoB: text })}
+              date={this.state.DoB}
+              mode="date"
+              placeholder="select birthdate"
+              format="YYYY-MM-DD"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              onDateChange={(date) => this.setState({ DoB: date })}
             />
 
-            <Text>Status Born:</Text>
+            <Text>Status Born (Y/N):</Text>
             <TextInput
               style={styles.input}
               onChangeText={(text) => this.setState({ Born: text })}
@@ -146,23 +160,18 @@ class Database extends React.Component {
               style={styles.input}
               onChangeText={(text) => this.setState({ Phone: text })}
             />
-            
+
             <Text>Notes:</Text>
             <TextInput
               style={styles.input}
               onChangeText={(text) => this.setState({ Notes: text })}
             />
 
-            <Button
-              title="Submit"
-              onPress={this.handleMother}/>
-
-        </ExpandableItem>
+            <Button title="Submit" onPress={this.handleMother} />
+          </ExpandableItem>
         </View>
 
-
         <MotherList data={this.state.mothers} />
-
       </ScrollView>
     );
   }

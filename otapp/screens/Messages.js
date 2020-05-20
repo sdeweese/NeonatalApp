@@ -3,9 +3,6 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Image,
-  Dimensions,
-  Linking,
   View,
   Button,
   TextInput,
@@ -19,7 +16,6 @@ class Messages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
       body: "",
       schedule: "",
       messages: [],
@@ -69,9 +65,8 @@ class Messages extends React.Component {
   }
 
   handleMessage = () => {
-    if (this.state.title && this.state.body && this.state.schedule) {
+    if (this.state.body && this.state.schedule) {
       this.updateMessages({
-        title: this.state.title,
         body: this.state.body,
         schedule: this.state.schedule,
       });
@@ -109,12 +104,6 @@ class Messages extends React.Component {
         </View>
         <View>
           <ExpandableItem title="NEW MESSAGE">
-            <Text>Title:</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.setState({ title: text })}
-            />
-
             <Text>Message:</Text>
             <TextInput
               style={styles.message}
@@ -122,13 +111,17 @@ class Messages extends React.Component {
               onChangeText={(text) => this.setState({ body: text })}
             />
 
-            <Text>Scheduled for:</Text>
+            <Text>Scheduled for (in days after birth):</Text>
             <TextInput
               style={styles.input}
               onChangeText={(text) => this.setState({ schedule: text })}
             />
 
-            <Button title="Submit" onPress={this.handleMessage} />
+            <Button
+              title="Submit"
+              color="#682f2f"
+              onPress={this.handleMessage}
+            />
           </ExpandableItem>
         </View>
         <ExpandableItem title="2 Days">
@@ -143,12 +136,15 @@ class Messages extends React.Component {
           </Text>
         </ExpandableItem>
         {this.state.messages.map((message) => (
-          <ExpandableItem title={message.schedule} key={message.schedule}>
-            <Text>Title: {message.title}</Text>
+          <ExpandableItem
+            title={message.schedule + " Days"}
+            key={message.schedule}
+          >
             <Text>Message: {message.body}</Text>
-            <Text>Scheduled for: {message.schedule}</Text>
+            <Text>Scheduled for: {message.schedule} days after birth</Text>
             <Button
               title="Delete"
+              color="red"
               onPress={async () => {
                 try {
                   let messages = await this.getMessages();
@@ -164,7 +160,7 @@ class Messages extends React.Component {
             />
           </ExpandableItem>
         ))}
-        <Button title="Delete All" onPress={this.removeAll} />
+        <Button title="Delete All" color="red" onPress={this.removeAll} />
       </ScrollView>
     );
   }
@@ -184,6 +180,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "#d6d7da",
+    backgroundColor: "#f2dac8", //peach
   },
   title: {
     textAlign: "center",
