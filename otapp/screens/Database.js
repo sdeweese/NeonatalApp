@@ -162,6 +162,12 @@ class Database extends React.Component {
     return age;
   }
 
+  filterAge(days) { // days is an int indicating the number of days old
+    let filtered = this.state.mothers.filter(kid => this.calcAge(kid.DoB) == days);
+
+    return filtered;  // returns array of objects with matching age
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -241,6 +247,7 @@ class Database extends React.Component {
         ))}
         <Button title="Delete All" color="red" onPress={this.removeAll} />
         <Button title="calculate age" onPress={() => alert(`${this.calcAge("5/10/20")} days old`)}/>
+        <Button title="filter" onPress={() => console.log(this.filterAge(10))}/>
         </View> 
       </ScrollView>
     );
