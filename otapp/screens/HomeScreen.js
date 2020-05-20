@@ -5,16 +5,19 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button
+        <Button 
           title="Educational Modules"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Modules")}
         />
         <Button
           title="Resources Map"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Resources")}
         />
         <Button
           title="Administrator"
+          color="#955d74" //dark pink
           onPress={() => this.props.navigation.navigate("Login")}
         />
       </View>
@@ -29,5 +32,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     flexDirection: "row",
+    backgroundColor: "#f2dac8"
   },
 });

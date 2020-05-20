@@ -29,6 +29,7 @@ class Database extends React.Component {
       Notes: "",
       mothers: [], // list of ALL the mothers
     };
+    this.removeMother = this.removeMother.bind(this);
   }
 
   componentDidMount() {
@@ -60,7 +61,7 @@ class Database extends React.Component {
 
   async updateMother(newMother) {
     try {
-      let mothers = await this.getMothers();
+      let mothers = await this.getMothers(); // []
       console.log(newMother);
       mothers.push(newMother);
       this.saveMothers(mothers);
@@ -86,6 +87,7 @@ class Database extends React.Component {
       console.log(error + ": error removing data");
     }
   }
+
 
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
@@ -136,13 +138,55 @@ class Database extends React.Component {
     }
   } 
 
-    render() {
+  uploadBackup = async (fileUri, data) => {
+    try {
+      alert(fileUri);
+      let update = FileSystem.getInfoAsync(fileUri, data);
+      saveMothers(update);
+    } catch (error) {
+      console.log(error + ": error uploading backup");
+    }
+  }
+
+  removeMother = async (removeMother) =>  {
+    try {
+      let newMothers = await this.getMothers(); // object version
+      newMothers = newMothers.filter((val, index, arr) => val !== removeMother);
+      this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
+      this.setState({ newMothers });
+    } catch (error) {
+      console.log(error + ": error removing data");
+    }
+  }
+
+  removeAll = async () => {
+    try {
+      let huh = await AsyncStorage.removeItem(STORAGE_KEY);
+      console.log(huh);
+      this.setState({ mothers: [] });
+    } catch (error) {
+      console.log(error + ": Remove all messages failed.");
+    }
+  };
+
+  render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
+        <Button
+            title="Backup"
+            color="#682f2f" //maroon
+            onPress={this.createBackup}
+        />
+
+        <Button
+          title="Upload File"
+          color="#955d74" //dark pink
+          onPress={this.uploadBackup("file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540sdeweese%252Fotapp/backup-5-20.json", data)}
+        />
 
           <ExpandableItem title="NEW MOTHER">
             <Text>Mother Name:</Text>
@@ -183,23 +227,45 @@ class Database extends React.Component {
 
             <Button
               title="Submit"
+              color="#682f2f"
               onPress={this.handleMother}/>
 
         </ExpandableItem>
-        </View>
+        
+        {this.state.mothers.map((mom) => (
+          <ExpandableItem title={mom.MotherName} key={mom.MotherName}> 
+            <Text>Mother Name: {mom.MotherName}</Text>
+            <Text>Child's Name: {mom.ChildName}</Text>
+            <Text>Child's Birthdate: {mom.DoB}</Text>
+            <Text>Status Born: {mom.Born}</Text>
+            <Text>Phone Number: {mom.Phone}</Text>
+            <Text>Notes: {mom.Notes}</Text>
+            <Button
+              title="Delete"
+              onPress={async () => {
+                try {
+                  let mothers = await this.getMothers();
+                  mothers = mothers.filter((val) => {
+                    return val.MotherName !== mom.MotherName;
+                  });
+                  this.saveMothers(mothers);
+                  this.setState({ mothers });
+                } catch (error) {
+                  console.log(error + ": error removing data");
+                }
+              }}
+            />
+          </ExpandableItem>
+        ))}
+        
+        <Button title="Delete All" color="red" onPress={this.removeAll} />
+        </View> 
 
-
-        <MotherList data={this.state.mothers} />
-
-          <Button
-            title="Backup"
-            onPress={this.createBackup}/>
-            
+        
       </ScrollView>
     );
   }
 }
-
 export default Database;
 
 const styles = StyleSheet.create({
@@ -214,6 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "#d6d7da",
+    backgroundColor: "#f2dac8" //peach
   },
   title: {
     textAlign: "center",
