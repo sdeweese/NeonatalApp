@@ -43,6 +43,8 @@ Set up environment for Sendgrid:
 
 DatePicker:
 * `npm install react-native-datepicker --save`
+Expo FileSystem:
+* `expo install expo-file-system`
 
 Creating an APK File
 ---------
