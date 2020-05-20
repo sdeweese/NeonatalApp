@@ -44,7 +44,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.background}>
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -71,7 +71,7 @@ class SignUp extends React.Component {
           style={styles.submitButton}
           onPress={() => this.storeUser(this.state.email, this.state.password)}
         >
-          <Text style={styles.submitButtonText}> SUBMIT </Text>
+          <Text style={styles.submitButtonText}> SUBMIT</Text>
         </TouchableOpacity>
       </View>
     );
@@ -87,19 +87,24 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     flexDirection: "row",
   },
+  background: {
+    backgroundColor: "#f2dac8",
+  },
   input: {
     margin: 15,
     height: 40,
     borderColor: "black",
+    backgroundColor: "white",
     borderWidth: 1,
     paddingLeft: 15,
   },
   submitButton: {
-    backgroundColor: "black",
+    backgroundColor: "#682f2f", //maroon
     padding: 10,
     margin: 15,
     alignItems: "center",
     height: 40,
+    marginBottom: 500,
   },
   submitButtonText: {
     color: "white",
