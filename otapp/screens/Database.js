@@ -3,15 +3,13 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Image,
-  Dimensions,
-  Linking,
   View,
   Button,
   TextInput,
   AsyncStorage,
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
+import DatePicker from "react-native-datepicker";
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -72,20 +70,21 @@ class Database extends React.Component {
   async removeMother(removeMother) {
     try {
       let old = this.getMothers(); // object version
-      // find the mother to remove in mothers [] 
-      old.forEach(mom => {
-        if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
+      // find the mother to remove in mothers []
+      old.forEach((mom) => {
+        if (
+          mom.Phone === removeMother.Phone &&
+          mom.MotherName === removeMother.MotherName
+        )
           newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
       });
-      
+
       this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
       this.setState({ newMothers });
-
     } catch (error) {
       console.log(error + ": error removing data");
     }
   }
-
 
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
@@ -96,11 +95,19 @@ class Database extends React.Component {
                 "Notes: " + this.state.Notes
                 );
                 */
-    if(this.state.MotherName !== '' && this.state.ChildName !== '' && this.state.DoB !== '' && this.state.Born !== '' && this.state.Phone !== '' && this.state.Notes !== ''){
-      this.updateMother({ // this is a mother object
+    if (
+      this.state.MotherName !== "" &&
+      this.state.ChildName !== "" &&
+      this.state.DoB !== "" &&
+      this.state.Born !== "" &&
+      this.state.Phone !== "" &&
+      this.state.Notes !== ""
+    ) {
+      this.updateMother({
+        // this is a mother object
         MotherName: this.state.MotherName,
         ChildName: this.state.ChildName,
-        DoB: this.state.DoB,
+        DoB: new Date(this.state.DoB),
         Born: this.state.Born,
         Phone: this.state.Phone,
         Notes: this.state.Notes,
@@ -110,7 +117,7 @@ class Database extends React.Component {
     }
   };
 
-  removeMother = async (removeMother) =>  {
+  removeMother = async (removeMother) => {
     try {
       let newMothers = await this.getMothers(); // object version
       newMothers = newMothers.filter((val, index, arr) => val !== removeMother);
@@ -119,7 +126,7 @@ class Database extends React.Component {
     } catch (error) {
       console.log(error + ": error removing data");
     }
-  }
+  };
 
   removeAll = async () => {
     try {
@@ -138,7 +145,6 @@ class Database extends React.Component {
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
-      
           <ExpandableItem title="NEW MOTHER">
             <Text>Mother Name:</Text>
             <TextInput
@@ -153,12 +159,15 @@ class Database extends React.Component {
             />
 
             <Text>Child's Birthdate:</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.setState({ DoB: text })}
+            <DatePicker
+              date={this.state.DoB}
+              mode="date"
+              formate="YYYY-MM-DD"
+              placeholder="select birthdate"
+              onDateChange={(date) => this.setState({ DoB: date })}
             />
 
-            <Text>Status Born:</Text>
+            <Text>Status Born (Y/N):</Text>
             <TextInput
               style={styles.input}
               onChangeText={(text) => this.setState({ Born: text })}
@@ -169,7 +178,7 @@ class Database extends React.Component {
               style={styles.input}
               onChangeText={(text) => this.setState({ Phone: text })}
             />
-            
+
             <Text>Notes:</Text>
             <TextInput
               style={styles.input}
@@ -179,37 +188,37 @@ class Database extends React.Component {
             <Button
               title="Submit"
               color="#682f2f"
-              onPress={this.handleMother}/>
-
-        </ExpandableItem>
-        
-        {this.state.mothers.map((mom) => (
-          <ExpandableItem title={mom.MotherName} key={mom.MotherName}> 
-            <Text>Mother Name: {mom.MotherName}</Text>
-            <Text>Child's Name: {mom.ChildName}</Text>
-            <Text>Child's Birthdate: {mom.DoB}</Text>
-            <Text>Status Born: {mom.Born}</Text>
-            <Text>Phone Number: {mom.Phone}</Text>
-            <Text>Notes: {mom.Notes}</Text>
-            <Button
-              title="Delete"
-              onPress={async () => {
-                try {
-                  let mothers = await this.getMothers();
-                  mothers = mothers.filter((val) => {
-                    return val.MotherName !== mom.MotherName;
-                  });
-                  this.saveMothers(mothers);
-                  this.setState({ mothers });
-                } catch (error) {
-                  console.log(error + ": error removing data");
-                }
-              }}
+              onPress={this.handleMother}
             />
           </ExpandableItem>
-        ))}
-        <Button title="Delete All" color="red" onPress={this.removeAll} />
-        </View> 
+
+          {this.state.mothers.map((mom) => (
+            <ExpandableItem title={mom.MotherName} key={mom.MotherName}>
+              <Text>Mother Name: {mom.MotherName}</Text>
+              <Text>Child's Name: {mom.ChildName}</Text>
+              <Text>Child's Birthdate: {mom.DoB.toString()}</Text>
+              <Text>Status Born: {mom.Born}</Text>
+              <Text>Phone Number: {mom.Phone}</Text>
+              <Text>Notes: {mom.Notes}</Text>
+              <Button
+                title="Delete"
+                onPress={async () => {
+                  try {
+                    let mothers = await this.getMothers();
+                    mothers = mothers.filter((val) => {
+                      return val.MotherName !== mom.MotherName;
+                    });
+                    this.saveMothers(mothers);
+                    this.setState({ mothers });
+                  } catch (error) {
+                    console.log(error + ": error removing data");
+                  }
+                }}
+              />
+            </ExpandableItem>
+          ))}
+          <Button title="Delete All" color="red" onPress={this.removeAll} />
+        </View>
       </ScrollView>
     );
   }
@@ -229,7 +238,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "#d6d7da",
-    backgroundColor: "#f2dac8" //peach
+    backgroundColor: "#f2dac8", //peach
   },
   title: {
     textAlign: "center",
