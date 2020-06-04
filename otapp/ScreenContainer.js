@@ -13,6 +13,7 @@ import Messages from "./screens/Messages";
 import Database from "./screens/Database";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
+import MamaSelfCare from "./screens/MamaSelfCare";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen,
@@ -121,8 +122,17 @@ const NavigationStack = createStackNavigator({
     },
    },
   },
+  MamaSelfCare: {
+    screen: MamaSelfCare,
+    navigationOptions: { headerTitle: "Mama Self Care",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   },
+  },
 });
-
 const Container = createAppContainer(NavigationStack);
 
 export default Container;
