@@ -36,8 +36,6 @@ class KeepingBabyClean extends React.Component{
                         source={require('../assets/Hygiene4.png')} />
                 </View>
 
-<<<<<<< HEAD
-=======
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
@@ -52,7 +50,6 @@ class KeepingBabyClean extends React.Component{
                         source={require('../assets/Hygiene6.png')} />
                 </View>
 
->>>>>>> 3ca39fac93bc13f42128586d4419bb21ade0efe3
             </ScrollView>
         );
     }
