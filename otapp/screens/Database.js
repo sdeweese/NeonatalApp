@@ -11,6 +11,7 @@ import {
 import ExpandableItem from "./components/ExpandableItem";
 import DatePicker from "react-native-datepicker";
 import * as FileSystem from "expo-file-system";
+import DocumentPicker from 'react-native-document-picker';
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -144,17 +145,21 @@ class Database extends React.Component {
     }
   } 
 
-  uploadBackup = async () => { // not functioning yet! // use these params fileUri, data
-    /*
+  async uploadBackup() { 
+    alert("upload file");
     try {
-      // alert(fileUri);
-      let update = FileSystem.getInfoAsync(fileUri, data);
+      let update =  await DocumentPicker.pick({ type: [DocumentPicker.types.allFiles] });
       saveMothers(update);
+      console.log(
+        update.uri,
+        update.type,
+        update.name,
+        update.size
+      );
     } catch (error) {
       console.log(error + ": error uploading backup");
-    }
-    */
-  }
+    }  
+  };
 
   removeMother = async (removeMother) =>  {
     try {
@@ -193,7 +198,7 @@ class Database extends React.Component {
         <Button
           title="Upload File"
           color="#682f2f" //maroon
-          onPress={this.uploadBackup()} // add in params here!
+          onPress={this.uploadBackup} 
         />
 
           <ExpandableItem title="NEW MOTHER">
