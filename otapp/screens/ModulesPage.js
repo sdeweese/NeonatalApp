@@ -22,6 +22,12 @@ class ModulesPage extends React.Component{
                     color="#955d74" //dark pink
                     onPress={() => this.props.navigation.navigate("WhenBabyGetsSick")}
                 />
+
+                <Button
+                    title="Mama Self Care"
+                    color="#955d74" //dark pink
+                    onPress={() => this.props.navigation.navigate("MamaSelfCare")}
+                />  
                 
             </View>
         );

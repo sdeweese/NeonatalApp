@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
 
-class KeepingBabyClean extends React.Component{
+class MamaSelfCare extends React.Component{
     render(){
         return (
             <ScrollView
@@ -12,52 +12,42 @@ class KeepingBabyClean extends React.Component{
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
-                        source={require('../assets/Hygiene1.png')} />
+                        source={require('../assets/Mama1.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{  width: Dimensions.get('window').width, height: Dimensions.get('window').height-75  }}
                         resizeMode="contain"
-                        source={require('../assets/Hygiene2.png')} />
+                        source={require('../assets/Mama2.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
-                        source={require('../assets/Hygiene3.png')} />
+                        source={require('../assets/Mama3.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
-                        source={require('../assets/Hygiene4.png')} />
-                </View>
-
-<<<<<<< HEAD
-=======
-                <View style={styles.container}>
-                    <Image 
-                        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
-                        resizeMode="contain"
-                        source={require('../assets/Hygiene5.png')} />
+                        source={require('../assets/Mama4.png')} />
                 </View>
 
                 <View style={styles.container}>
                     <Image 
                         style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-75 }}
                         resizeMode="contain"
-                        source={require('../assets/Hygiene6.png')} />
+                        source={require('../assets/Mama5.png')} />
                 </View>
 
->>>>>>> 3ca39fac93bc13f42128586d4419bb21ade0efe3
             </ScrollView>
         );
     }
 }
-export default KeepingBabyClean;
+export default MamaSelfCare;
 
 const styles = StyleSheet.create({
     container:{
