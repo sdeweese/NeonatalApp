@@ -109,7 +109,7 @@ class Database extends React.Component {
         // this is a mother object
         MotherName: this.state.MotherName,
         ChildName: this.state.ChildName,
-        DoB: new Date(this.state.DoB),
+        DoB: JSON.stringify(new Date(this.state.DoB)),
         Born: this.state.Born,
         Phone: this.state.Phone,
         Notes: this.state.Notes,
