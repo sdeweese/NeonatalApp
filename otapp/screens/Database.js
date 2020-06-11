@@ -114,6 +114,17 @@ class Database extends React.Component {
         Phone: this.state.Phone,
         Notes: this.state.Notes,
       });
+
+      alert(this.MotherName + "’s information was successfully stored.");
+
+      this.state = {
+            MotherName: "",
+            ChildName: "",
+            DoB: "",
+            Born: "",
+            Phone: "",
+            Notes: "",
+      };
     } else {
       alert("Fields cannot be blank.");
     }
@@ -134,28 +145,31 @@ class Database extends React.Component {
       var date = new Date().getDate(); //To get the Current Date
       let fileName = 'backup-' + month + '-' + date + '.json';
       console.log(fileName);
-      let fileUri = myFolder + fileName;
+      let fileUri = "Downloads/" + fileName;
       console.log(fileUri);
       // write file
       FileSystem.writeAsStringAsync(fileUri, data);
       //let result = FileSystem.readAsStringAsync(fileUri);
       //console.log(result);
+      alert("Storing in: " + myFolder + " with this file name: " + fileName);
     } catch (error) {
       console.log(error + ": error creating backup");
     }
   } 
 
   async uploadBackup() { 
-    alert("upload file");
     try {
-      let update =  await DocumentPicker.pick({ type: [DocumentPicker.types.allFiles] });
+      let update = await DocumentPicker.pick({ type: [DocumentPicker.types.allFiles] });
+      alert("Ready to save this list of mothers");
       saveMothers(update);
+      alert("Saved new mothers");
       console.log(
         update.uri,
         update.type,
         update.name,
         update.size
       );
+      alert("Made it to the end of upload backup!");
     } catch (error) {
       console.log(error + ": error uploading backup");
     }  

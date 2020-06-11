@@ -25,6 +25,7 @@ class Messages extends React.Component {
   componentDidMount() {
     this.getMessages();
   }
+  
   async saveMessages(messages) {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
@@ -70,6 +71,11 @@ class Messages extends React.Component {
         body: this.state.body,
         schedule: this.state.schedule,
       });
+      alert("This message was successfully stored.");
+      this.state = {
+        body: "",
+        schedule: "",
+      };
     } else {
       alert("Message fields cannot be blank.");
     }
