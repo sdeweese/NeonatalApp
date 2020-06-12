@@ -154,10 +154,13 @@ class Messages extends React.Component {
     let filtered = this.state.mothers.filter(kid => this.calcAge(kid.DoB) == days);
 
     return filtered.map((contact) => (
-      
         <Text>{contact.MotherName}, {contact.Phone}{'\n'}</Text>
-      
     ));
+  }
+
+  filterMessages(days) {
+    let filtered = this.state.mothers.filter(kid => this.calcAge(kid.DoB) == days);
+    return filtered;
   }
 
   render() {
@@ -169,7 +172,7 @@ class Messages extends React.Component {
         <View>
 
         <ExpandableItem title="TODAY'S MESSAGES">
-          {this.state.messages.map((message) => (
+          {this.state.messages.filter(m => this.filterMessages(m.schedule).length > 0).map((message) => (
             <View>
               <Text>Title: {message.title}</Text>
               <Text>Message: {message.body}</Text>
