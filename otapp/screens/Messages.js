@@ -118,10 +118,10 @@ class Messages extends React.Component {
     var month = new Date().getMonth() + 1; //To get the Current Month
     var year = new Date().getFullYear(); //To get the Current Year
     
-    // let's assume birth dates are entered as MM-DD-YYYY or M-D-YYYY etc. (can be separated by .,/- or space)
-    let born = DoB.split(/[.,\/ -]/,2); // splits string into array of substrings ["month","date"]
-    let birthmonth = parseInt(born[0]); // parseInt parses string and returns integer
-    let birthdate = parseInt(born[1]);
+    // let's assume birth dates are entered as YYYY/MM/DD (can be separated by .,/- or space)
+    let born = DoB.split(/[.,\/ -]/,3); // splits string into array of substrings ["year","month","date"]
+    let birthmonth = parseInt(born[1]); // parseInt parses string and returns integer
+    let birthdate = parseInt(born[2]);
 
     let age = 0; // number of days old
     if(month-birthmonth >= 2) {
@@ -146,14 +146,14 @@ class Messages extends React.Component {
   }
 
   filterAge(days) { // days is an int indicating the number of days old
-    let filtered = this.state.mothers.filter(kid => this.calcAge(kid.DoB) == days);
+    let filtered = filterMessages(days); //this.state.mothers.filter(kid => this.calcAge(kid.DoB) == days);
 
     return filtered.map((contact) => (
         <Text>{contact.MotherName}, {contact.Phone}{'\n'}</Text>
     ));
   }
 
-  filterMessages(days) {
+  filterMessages(days) {  // days is an int indicating the number of days old
     let filtered = this.state.mothers.filter(kid => this.calcAge(kid.DoB) == days);
     return filtered;
   }
