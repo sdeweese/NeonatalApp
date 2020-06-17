@@ -3,15 +3,15 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Image,
-  Dimensions,
-  Linking,
   View,
   Button,
   TextInput,
   AsyncStorage,
 } from "react-native";
 import ExpandableItem from "./components/ExpandableItem";
+import DatePicker from "react-native-datepicker";
+import * as FileSystem from "expo-file-system";
+import DocumentPicker from 'react-native-document-picker';
 
 const STORAGE_KEY = "MOTHERS";
 
@@ -72,20 +72,21 @@ class Database extends React.Component {
   async removeMother(removeMother) {
     try {
       let old = this.getMothers(); // object version
-      // find the mother to remove in mothers [] 
-      old.forEach(mom => {
-        if(mom.Phone === removeMother.Phone && mom.MotherName === removeMother.MotherName) 
+      // find the mother to remove in mothers []
+      old.forEach((mom) => {
+        if (
+          mom.Phone === removeMother.Phone &&
+          mom.MotherName === removeMother.MotherName
+        )
           newMothers = old.slice(0, mom); // look into using slice to create a sub array with 1 missing elt
       });
-      
+
       this.saveMothers(newMothers); // store the temp as into AsyncStorage to overwrite the current mothers array stored in AsyncStorage
       this.setState({ newMothers });
-
     } catch (error) {
       console.log(error + ": error removing data");
     }
   }
-
 
   handleMother = () => {
     /*alert("Mother Name: " + this.state.MotherName + "\n" +
@@ -96,11 +97,19 @@ class Database extends React.Component {
                 "Notes: " + this.state.Notes
                 );
                 */
-    if(this.state.MotherName !== '' && this.state.ChildName !== '' && this.state.DoB !== '' && this.state.Born !== '' && this.state.Phone !== '' && this.state.Notes !== ''){
-      this.updateMother({ // this is a mother object
+    if (
+      this.state.MotherName !== "" &&
+      this.state.ChildName !== "" &&
+      this.state.DoB !== "" &&
+      this.state.Born !== "" &&
+      this.state.Phone !== "" &&
+      this.state.Notes !== ""
+    ) {
+      this.updateMother({
+        // this is a mother object
         MotherName: this.state.MotherName,
         ChildName: this.state.ChildName,
-        DoB: this.state.DoB,
+        DoB: JSON.stringify(new Date(this.state.DoB)),
         Born: this.state.Born,
         Phone: this.state.Phone,
         Notes: this.state.Notes,
@@ -108,6 +117,48 @@ class Database extends React.Component {
     } else {
       alert("Fields cannot be blank.");
     }
+  };
+
+  
+  createBackup = async () => {
+    try {
+      // get mothers
+      let mothers = await this.getMothers();  
+      console.log(mothers);
+      let data = JSON.stringify(mothers);
+      console.log(data);
+      // determine file uri
+      let myFolder = FileSystem.documentDirectory;
+      //console.log(myFolder);
+      var month = new Date().getMonth() + 1; //To get the Current Month
+      var date = new Date().getDate(); //To get the Current Date
+      let fileName = 'backup-' + month + '-' + date + '.json';
+      console.log(fileName);
+      let fileUri = myFolder + fileName;
+      console.log(fileUri);
+      // write file
+      FileSystem.writeAsStringAsync(fileUri, data);
+      //let result = FileSystem.readAsStringAsync(fileUri);
+      //console.log(result);
+    } catch (error) {
+      console.log(error + ": error creating backup");
+    }
+  } 
+
+  async uploadBackup() { 
+    alert("upload file");
+    try {
+      let update =  await DocumentPicker.pick({ type: [DocumentPicker.types.allFiles] });
+      saveMothers(update);
+      console.log(
+        update.uri,
+        update.type,
+        update.name,
+        update.size
+      );
+    } catch (error) {
+      console.log(error + ": error uploading backup");
+    }  
   };
 
   removeMother = async (removeMother) =>  {
@@ -119,7 +170,7 @@ class Database extends React.Component {
     } catch (error) {
       console.log(error + ": error removing data");
     }
-  }
+  };
 
   removeAll = async () => {
     try {
@@ -139,7 +190,18 @@ class Database extends React.Component {
           <Text style={styles.title}>Mother Portal</Text>
         </View>
         <View>
-      
+        <Button
+            title="Backup"
+            color="#682f2f" //maroon
+            onPress={this.createBackup}
+        />
+         
+        <Button
+          title="Upload File"
+          color="#682f2f" //maroon
+          onPress={this.uploadBackup} 
+        />
+
           <ExpandableItem title="NEW MOTHER">
             <Text>Mother Name:</Text>
             <TextInput
@@ -154,12 +216,15 @@ class Database extends React.Component {
             />
 
             <Text>Child's Birthdate:</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.setState({ DoB: text })}
+            <DatePicker
+              date={this.state.DoB}
+              mode="date"
+              formate="YYYY-MM-DD"
+              placeholder="select birthdate"
+              onDateChange={(date) => this.setState({ DoB: date })}
             />
 
-            <Text>Status Born:</Text>
+            <Text>Status Born (Y/N):</Text>
             <TextInput
               style={styles.input}
               onChangeText={(text) => this.setState({ Born: text })}
@@ -170,7 +235,7 @@ class Database extends React.Component {
               style={styles.input}
               onChangeText={(text) => this.setState({ Phone: text })}
             />
-            
+
             <Text>Notes:</Text>
             <TextInput
               style={styles.input}
@@ -194,6 +259,7 @@ class Database extends React.Component {
             <Text>Notes: {mom.Notes}</Text>
             <Button
               title="Delete"
+              color="red"
               onPress={async () => {
                 try {
                   let mothers = await this.getMothers();
@@ -208,14 +274,13 @@ class Database extends React.Component {
               }}
             />
           </ExpandableItem>
-        ))}
-        <Button title="Delete All" color="red" onPress={this.removeAll} />
-        </View> 
+          ))}
+          <Button title="Delete All" color="red" onPress={this.removeAll} />
+        </View>
       </ScrollView>
     );
   }
 }
-
 export default Database;
 
 const styles = StyleSheet.create({
@@ -230,7 +295,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "#d6d7da",
-    backgroundColor: "#f2dac8" //peach
+    backgroundColor: "#f2dac8", //peach
   },
   title: {
     textAlign: "center",

@@ -11,9 +11,9 @@ import ResourcesMap from "./screens/ResourcesMap";
 import Admin from "./screens/Admin";
 import Messages from "./screens/Messages";
 import Database from "./screens/Database";
-import Backup from "./screens/Backup";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
+import MamaSelfCare from "./screens/MamaSelfCare";
 
 const NavigationStack = createStackNavigator({
   Home: { screen: HomeScreen,
@@ -102,16 +102,6 @@ const NavigationStack = createStackNavigator({
     },
    }, // header at the top of the screen
   },
-  Backup: {
-    screen: Backup,
-    navigationOptions: { headerTitle: "Restore Backup",
-    headerStyle: {
-      backgroundColor: "#c691a7",
-      borderBottomColor: "#c691a7",
-      borderBottomWidth: 3,
-    },
-   },
-  },
   SignUp: {
     screen: SignUp,
     navigationOptions: { headerTitle: "Sign Up",
@@ -132,8 +122,17 @@ const NavigationStack = createStackNavigator({
     },
    },
   },
+  MamaSelfCare: {
+    screen: MamaSelfCare,
+    navigationOptions: { headerTitle: "Mama Self Care",
+    headerStyle: {
+      backgroundColor: "#c691a7",
+      borderBottomColor: "#c691a7",
+      borderBottomWidth: 3,
+    },
+   },
+  },
 });
-
 const Container = createAppContainer(NavigationStack);
 
 export default Container;
