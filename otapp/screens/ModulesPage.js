@@ -6,6 +6,12 @@ class ModulesPage extends React.Component{
         return (
             <View style={styles.container}>
                 <Button
+                    title="Mama Self-Care"
+                    color="#955d74" //dark pink
+                    onPress={() => this.props.navigation.navigate("MamaSelfCare")}
+                /> 
+
+                <Button
                     title="Feeding Your Baby"
                     color="#955d74" //dark pink
                     onPress={() => this.props.navigation.navigate("FeedingYourBaby")}
@@ -21,12 +27,6 @@ class ModulesPage extends React.Component{
                     title="When Baby Gets Sick"
                     color="#955d74" //dark pink
                     onPress={() => this.props.navigation.navigate("WhenBabyGetsSick")}
-                />
-
-                <Button
-                    title="Mama Self Care"
-                    color="#955d74" //dark pink
-                    onPress={() => this.props.navigation.navigate("MamaSelfCare")}
                 />  
                 
             </View>

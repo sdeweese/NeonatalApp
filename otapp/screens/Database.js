@@ -134,7 +134,7 @@ class Database extends React.Component {
       var date = new Date().getDate(); //To get the Current Date
       let fileName = 'backup-' + month + '-' + date + '.json';
       console.log(fileName);
-      let fileUri = myFolder + fileName;
+      let fileUri = "Downloads" + fileName;
       console.log(fileUri);
       // write file
       FileSystem.writeAsStringAsync(fileUri, data);
